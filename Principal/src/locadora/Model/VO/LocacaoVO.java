@@ -7,112 +7,116 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class LocacaoVO {
-    Locale localeBR = new Locale( "pt", "BR" );  
-    NumberFormat dinheiroBR = NumberFormat.getCurrencyInstance(localeBR); 
-    SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
-    
-    // Variáveis
-    private Long idLocacao=0L;
-    private Calendar dataDaLocacao = Calendar.getInstance();
-    private ClienteVO cliente;
-    private ProdutoVO produto; //deverá ser um array pois o cliente pode locar mais de um produto por vez
-    private Calendar dataDaDevolucao = Calendar.getInstance();
-    private double valorLocacao;
-    private double multa;
-    private double desconto;
-    private double valorPago;
-    private boolean pago;
+	Locale localeBR = new Locale("pt", "BR");
+	NumberFormat dinheiroBR = NumberFormat.getCurrencyInstance(localeBR);
+	SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
 
-    //Métodos Especiais - Getters e Setters
-    public void setIdLocacao(Long idLocacao) {
-        this.idLocacao = idLocacao;
-    }
+	// Variáveis
+	private Long idLocacao = 0L;
+	private Calendar dataDaLocacao = Calendar.getInstance();
+	private ClienteVO cliente;
+	private ProdutoVO produto; // deverá ser um array pois o cliente pode locar mais de um produto por vez
+	private Calendar dataDaDevolucao = Calendar.getInstance();
+	private double valorLocacao;
+	private double multa;
+	private double desconto;
+	private double valorPago;
+	private boolean pago;
 
-    public Long getIdLocacao() {
-        return idLocacao;
-    }
-    
-    public void setDataDaLocacao(Calendar dataDaLocacao) {
-        this.dataDaLocacao = dataDaLocacao;
-    }
+	// Métodos Especiais - Getters e Setters
+	public void setIdLocacao(Long idLocacao) {
+		this.idLocacao = idLocacao;
+	}
 
-    public Calendar getDataDaLocacao() {
-        return dataDaLocacao;
-    }
+	public Long getIdLocacao() {
+		return idLocacao;
+	}
 
+	public void setDataDaLocacao(Calendar dataDaLocacao) {
+		this.dataDaLocacao = dataDaLocacao;
+	}
 
-    public void setCliente(ClienteVO cliente) {
-        this.cliente = cliente;
-    }
+	public Calendar getDataDaLocacao() {
+		return dataDaLocacao;
+	}
 
-    public ClienteVO getCliente() {
-        return cliente;
-    }
+	public void setCliente(ClienteVO cliente) {
+		this.cliente = cliente;
+	}
 
-    public void setProduto(ProdutoVO produto) {
-        this.produto = produto;
-    }
+	public ClienteVO getCliente() {
+		return cliente;
+	}
 
-    public ProdutoVO getProduto() {
-        return produto;
-    }
+	public void setProduto(ProdutoVO produto) {
+		this.produto = produto;
+	}
 
-    public void setDataDaDevolucao() {
-        getDataDaDevolucao().add(Calendar.DAY_OF_MONTH,7);
-    }
-    
-    public Calendar getDataDaDevolucao() {
-        return dataDaDevolucao;
-    }
+	public ProdutoVO getProduto() {
+		return produto;
+	}
 
-    public double getValorLocacao() {
-        return valorLocacao;
-    }
+	public void setDataDaDevolucao() {
+		getDataDaDevolucao().add(Calendar.DAY_OF_MONTH, 7);
+	}
 
-    public void setValorLocacao(double valorLocacao) {
-        if(valorLocacao>0)
-            this.valorLocacao = valorLocacao;
-        else System.out.println("Valor não aceitável.");
-    }
+	public Calendar getDataDaDevolucao() {
+		return dataDaDevolucao;
+	}
 
-    public double getMulta() {
-        return multa;
-    }
+	public double getValorLocacao() {
+		return valorLocacao;
+	}
 
-    public void setMulta(double multa) {
-        if(multa>=0)
-            this.multa = multa;
-        else System.out.println("Valor não aceitável.");
-    }
-    
-    public double getDesconto() {
-        return desconto;
-    }
+	public void setValorLocacao(double valorLocacao) {
+		if (valorLocacao > 0)
+			this.valorLocacao = valorLocacao;
+		else
+			System.out.println("Valor não aceitável.");
+	}
 
-    public void setDesconto(double desconto) {
-        if(desconto>=0 && desconto<valorLocacao)
-            this.desconto = desconto;
-        else System.out.println("Valor não aceitável.");
-    }
+	public double getMulta() {
+		return multa;
+	}
 
-    public double getValorPago() {
-        return valorPago;
-    }
+	public void setMulta(double multa) {
+		if (multa >= 0)
+			this.multa = multa;
+		else
+			System.out.println("Valor não aceitável.");
+	}
 
-    public void setValorPago(double valorPago) {
-        if(valorPago>0)
-            this.valorPago = valorLocacao + multa - desconto;
-        else System.out.println("Valor não aceitável.");
-    }    
+	public double getDesconto() {
+		return desconto;
+	}
 
-    public boolean isPago() {
-        return pago;
-    }
+	public void setDesconto(double desconto) {
+		if (desconto >= 0 && desconto < valorLocacao)
+			this.desconto = desconto;
+		else
+			System.out.println("Valor não aceitável.");
+	}
 
-    public void setPago(boolean pago) {
-        this.pago = pago;
-    }
+	public double getValorPago() {
+		return valorPago;
+	}
 
-    //Métodos Especiais - Construtor
-    public LocacaoVO(){}; //Construtor default
+	public void setValorPago(double valorPago) {
+		if (valorPago > 0)
+			this.valorPago = valorLocacao + multa - desconto;
+		else
+			System.out.println("Valor não aceitável.");
+	}
+
+	public boolean isPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
+	}
+
+	// Métodos Especiais - Construtor
+	public LocacaoVO() {
+	}; // Construtor default
 }
