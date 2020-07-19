@@ -18,32 +18,33 @@ public class TesteConn {
 	public static void main(String[] args) {
 
 		// ----------- TESTE CLIENTE ------------
-		ClienteDAO clidao = new ClienteDAO();
+		ClienteDAO<ClienteVO> clidao = new ClienteDAO<ClienteVO>();
 		ClienteVO cli = new ClienteVO();
-		// ClienteVO cli5 = new ClienteVO();
+		ClienteVO cli5 = new ClienteVO();
 
-		// cli.setIdCliente(1L);
-		// cli.setNome("Giulia Elisa Costa");
-		// cli.setCpf("124.770.248-10");
-		// cli.setTelefone("(84) 9.9960-9271");
-		// cli.setEndereco("Rua Raimundo Firmino da Costa, 507 - Casa 11 - Costa e
-		// Silva");
+		 cli.setIdCliente(15L);
+		 cli.setNome("Matheus Goes");
+		 cli.setCpf("987.654.321-00");
+		 cli.setTelefone("(85) 9.9999-9999");
+		 cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
 
 		// clidao.alterar(cli);
 		// clidao.inserir(cli);
-
+		// clidao.listar();
+		// clidao.removerById(cli);
+		// cli5.setCpf("124.770.248-10");
+		// clidao.removerByCPF(cli5);
 		// Para buscar e mostrar o cliente pelo cpf
-		// cli5.setCpf("057.089.248-10");
 		// clidao.buscar(cli5);
 		// System.out.println(cli5);
 
-		List<ClienteVO> clientes = clidao.listar();
-		for (ClienteVO cli2 : clientes) {
+		//List<ClienteVO> clientes = clidao.listar();
+		//for (ClienteVO cli2 : clientes) {
 			// System.out.println(cli2);
-			System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t"
-					+ cli2.getTelefone() + "\t" + cli2.getEndereco());
+		//	System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t"
+			//		+ cli2.getTelefone() + "\t" + cli2.getEndereco());
 
-		}
+		//}
 
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioDAO usudao = new UsuarioDAO();
@@ -61,12 +62,12 @@ public class TesteConn {
 		// Para buscar e mostrar o cliente
 		// usudao.buscar(usu5);
 
-		List<UsuarioVO> usuarios = usudao.listar();
-		for (UsuarioVO usu2 : usuarios) {
-			System.out.println(usu2);
-			System.out.println(
-					usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
-		}
+		//List<UsuarioVO> usuarios = usudao.listar();
+		//for (UsuarioVO usu2 : usuarios) {
+			//System.out.println(usu2);
+			//System.out.println(
+				//	usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
+		//}
 
 		// ---------- TESTE DISCO ------------
 		DiscoDAO discdao = new DiscoDAO();
@@ -95,13 +96,13 @@ public class TesteConn {
 		// discdao.buscar(disc5);
 		// System.out.println(disc5);
 
-		List<DiscoVO> discos = discdao.listar();
-		for (DiscoVO disc2 : discos) {
-			// System.out.println(disc2);
-			System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" + disc2.getNomeDaBanda() + "\t"
-					+ disc2.getGenero() + "\t" + disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() + "\t"
-					+ disc.getValorDoAluguel());
-		}
+	//	List<DiscoVO> discos = discdao.listar();
+	//	for (DiscoVO disc2 : discos) {
+	//		// System.out.println(disc2);
+	//		System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" + disc2.getNomeDaBanda() + "\t"
+	//				+ disc2.getGenero() + "\t" + disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() + "\t"
+	//				+ disc.getValorDoAluguel());
+	//	}
 
 		// ---------- TESTE LIVRO ------------
 		LivroDAO livdao = new LivroDAO();
@@ -127,13 +128,13 @@ public class TesteConn {
 		// livdao.buscar(liv5);
 		// System.out.println(liv5);
 
-		List<LivroVO> livros = livdao.listar();
-		for (LivroVO liv2 : livros) {
+	//	List<LivroVO> livros = livdao.listar();
+	//	for (LivroVO liv2 : livros) {
 			// System.out.println(liv2);
-			System.out.println(liv2.getIdProduto() + "\t" + liv2.getTitulo() + "\t" + liv2.getAutor() + "\t"
-					+ liv2.getGenero() + "\t" + liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t"
-					+ liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
-		}
+	//		System.out.println(liv2.getIdProduto() + "\t" + liv2.getTitulo() + "\t" + liv2.getAutor() + "\t"
+	//				+ liv2.getGenero() + "\t" + liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t"
+	//				+ liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
+	//	}
 
 		// ---------- TESTE LOCAÇÃO ------------
 		LocacaoDAO locdao = new LocacaoDAO();
