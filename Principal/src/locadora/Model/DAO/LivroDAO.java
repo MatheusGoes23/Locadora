@@ -4,24 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import locadora.Model.VO.LivroVO;
 
-public class LivroDAO extends ConectarBD {
+public class LivroDAO<VO extends LivroVO> extends ConectarBD {
 
 	// Métodos
-	
-	// Cadastra todos os dados de um livro no Banco de Dados
-	public void inserir(LivroVO livro) {
-		connection = getConnection();
+
+	// Cadastra os dados de um livro no Banco de Dados
+	public void inserir(VO livro) {
 		String sql = "insert into livro(titulo, autor, genero, anoLancamento, qtdExemplares, qtdPaginas, valorAluguel) values(?,?,?,?,?,?,?)";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1, livro.getTitulo());
 			ptst.setString(2, livro.getAutor());
 			ptst.setString(3, livro.getGenero());
@@ -29,111 +23,107 @@ public class LivroDAO extends ConectarBD {
 			ptst.setInt(5, livro.getQtdExemplares());
 			ptst.setInt(6, livro.getQtdPaginas());
 			ptst.setDouble(7, livro.getValorDoAluguel());
-			ptst.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+
+			int affectedRows = ptst.executeUpdate();
+
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				livro.setIdProduto(generatedKeys.getLong(1));
+			} else {
+				throw new SQLException("A inserção falhou. Nenhum id foi retornado.");
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 	}
 
-	/* Altera o valor de um livro específico no Banco de Dados
-	   a partir do IdLivro informado */
-	public void alterarValor(LivroVO livro) {
-		connection = getConnection();
+	/*
+	 * Altera o valor do aluguel de um livro específico no Banco de Dados a partir
+	 * do id do livro informado
+	 */
+	public void alterarValor(VO livro) {
 		String sql = "UPDATE livro SET valorAluguel=? WHERE idLivro=?";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setDouble(1, livro.getValorDoAluguel());
 			ptst.setLong(2, livro.getIdProduto());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
 		}
 	}
 
-	/* Altera a quantidade de exemplares de um livro específico no Banco de Dados
-	   a partir do IdLivro informado */
-	public void alterarQuantidade(LivroVO livro) {
-		connection = getConnection();
+	/*
+	 * Altera a quantidade de exemplares de um livro específico no Banco de Dados a
+	 * partir do id do livro informado
+	 */
+	public void alterarQuantidade(VO livro) {
 		String sql = "UPDATE livro SET qtdExemplares=? WHERE idLivro=?";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setDouble(1, livro.getQtdExemplares());
 			ptst.setLong(2, livro.getIdProduto());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
 		}
 	}
 
-	/* Remove todos os dados de um livros específico no Banco de Dados
-	   a partir do IdLivro informado */
-	public void removerById(LivroVO livro) {
-		connection = getConnection();
+	/*
+	 * Remove os dados de um livro específico no Banco de Dados a partir do id do
+	 * livro informado
+	 */
+	public void removerById(VO livro) {
 		String sql = "DELETE FROM livro WHERE idLivro=?";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, livro.getIdProduto());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(LivroDAO.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
 		}
 	}
 
-	// Lista todos os dados dos livro existentes no Banco de Dados
-	public List<LivroVO> listar() {
-		connection = getConnection();
+	// Lista todos os dados dos livros existentes no Banco de Dados
+	public ResultSet listar() {
 		String sql = "SELECT * FROM livro";
 		Statement st;
-		ResultSet resultado;
-		List<LivroVO> livros = new ArrayList<LivroVO>();
+		ResultSet resultado = null;
 
 		try {
-			st = connection.createStatement();
+			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
-			while (resultado.next()) {
-				LivroVO liv = new LivroVO();
-				liv.setIdProduto(resultado.getLong("IdLivro"));
-				liv.setTitulo(resultado.getString("titulo"));
-				liv.setAutor(resultado.getString("autor"));
-				liv.setGenero(resultado.getString("genero"));
-				liv.setAnoDeLancamento(resultado.getInt("anoLancamento"));
-				liv.setQtdExemplares(resultado.getInt("qtdExemplares"));
-				liv.setQtdPaginas(resultado.getInt("qtdPaginas"));
-				liv.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
-				livros.add(liv);
-			}
 		} catch (SQLException ex) {
-			System.out.println("deu mal");
+			ex.printStackTrace();
 		}
-		return livros;
+		return resultado;
 	}
 
-	/* Busca e mostra os dados de um livro expecífico no 
-	   Banco de Bados a partir do IdLivro informado */
-	public LivroVO buscar(LivroVO livro) {
-		connection = getConnection();
+	/*
+	 * Busca os dados de um livro expecífico no Banco de Bados a partir do id do
+	 * livro informado
+	 */
+	public ResultSet buscar(VO livro) {
 		String sql = "SELECT * FROM livro WHERE idLivro=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, livro.getIdProduto());
-			ResultSet resultado = ptst.executeQuery();
-			if (resultado.next()) {
-				livro.setIdProduto(resultado.getLong("IdLivro"));
-				livro.setTitulo(resultado.getString("titulo"));
-				livro.setAutor(resultado.getString("autor"));
-				livro.setGenero(resultado.getString("genero"));
-				livro.setAnoDeLancamento(resultado.getInt("anoLancamento"));
-				livro.setQtdExemplares(resultado.getInt("qtdExemplares"));
-				livro.setQtdPaginas(resultado.getInt("qtdPaginas"));
-				livro.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
-				return livro;
-			}
+			resultado = ptst.executeQuery();
+
 		} catch (SQLException ex) {
-			System.out.println("deu mal");
+			ex.printStackTrace();
 		}
-		return livro;
+		return resultado;
 	}
 }

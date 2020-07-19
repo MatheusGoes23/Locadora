@@ -2,14 +2,13 @@ package locadora.Model.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConectarBD {
-	Connection connection = null;
-	String url = "jdbc:mariadb://localhost:3303/locadora";
-	String user = "Giovanni";
-	String senha = "Giggio51";
+	private static Connection connection = null;
+	private static final String url = "jdbc:mariadb://localhost:3303/locadora";
+	private static final String user = "Giovanni";
+	private static final String senha = "Giggio51";
 
 	public Connection getConnection() {
 		if (connection == null) {
@@ -33,5 +32,4 @@ public class ConectarBD {
 		}
 	}
 
-	
 }

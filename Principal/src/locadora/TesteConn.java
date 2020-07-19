@@ -1,7 +1,7 @@
 package locadora;
 
+import java.sql.ResultSet;
 import java.util.Calendar;
-import java.util.List;
 
 import locadora.Model.DAO.ClienteDAO;
 import locadora.Model.DAO.DiscoDAO;
@@ -20,143 +20,119 @@ public class TesteConn {
 		// ----------- TESTE CLIENTE ------------
 		ClienteDAO<ClienteVO> clidao = new ClienteDAO<ClienteVO>();
 		ClienteVO cli = new ClienteVO();
-		ClienteVO cli5 = new ClienteVO();
 
-		 cli.setIdCliente(15L);
-		 cli.setNome("Matheus Goes");
-		 cli.setCpf("987.654.321-00");
-		 cli.setTelefone("(85) 9.9999-9999");
-		 cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
+		cli.setIdCliente(15L);
+		cli.setNome("Matheus Goes");
+		cli.setCpf("987.654.351-00");
+		cli.setTelefone("(85) 9.9999-9999");
+		cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
 
-		// clidao.alterar(cli);
 		// clidao.inserir(cli);
-		// clidao.listar();
+		// clidao.alterar(cli);
 		// clidao.removerById(cli);
-		// cli5.setCpf("124.770.248-10");
-		// clidao.removerByCPF(cli5);
-		// Para buscar e mostrar o cliente pelo cpf
-		// clidao.buscar(cli5);
-		// System.out.println(cli5);
+		// clidao.removerByCPF(cli);
 
-		//List<ClienteVO> clientes = clidao.listar();
-		//for (ClienteVO cli2 : clientes) {
-			// System.out.println(cli2);
-		//	System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t"
-			//		+ cli2.getTelefone() + "\t" + cli2.getEndereco());
+		// Buscar pelo CPF:
+		// ResultSet resultcli;
+		// try {
+		// resultcli = clidao.buscar(cli);
+		// System.out.println(resultcli.next());
+		// } catch (Exception e) {
 
-		//}
+		// }
 
 		// ----------- TESTE USUÁRIO ------------
-		UsuarioDAO usudao = new UsuarioDAO();
+		UsuarioDAO<UsuarioVO> usudao = new UsuarioDAO<UsuarioVO>();
 		UsuarioVO usu = new UsuarioVO();
 
-		// usu.setIdUsuario(5L);
-		// usu.setLogin("Matheus Goes");
-		// usu.setSenha("123456");
-		// usu.setPerfil(1);
+		usu.setIdUsuario(4L);
+		usu.setLogin("Giovanni");
+		usu.setSenha("123789");
+		usu.setPerfil(2);
 
 		// usudao.inserir(usu);
 		// usudao.alterar(usu);
 		// usudao.removerById(usu);
 
-		// Para buscar e mostrar o cliente
-		// usudao.buscar(usu5);
-
-		//List<UsuarioVO> usuarios = usudao.listar();
-		//for (UsuarioVO usu2 : usuarios) {
-			//System.out.println(usu2);
-			//System.out.println(
-				//	usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
-		//}
-
 		// ---------- TESTE DISCO ------------
-		DiscoDAO discdao = new DiscoDAO();
+		DiscoDAO<DiscoVO> discdao = new DiscoDAO<DiscoVO>();
 		DiscoVO disc = new DiscoVO();
 
-		// disc.setIdProduto(5L);
-		// disc.setTitulo("Alagados");
-		// disc.setNomeDaBanda("Paralamas");
-		// disc.setGenero("Rock Progressivo");
-		// disc.setAnoDeLancamento(1990);
-		// disc.setQtdExemplares(1);
-		// disc.setValorDoAlulguel(7.5);
-
-		// Para mudar o valor do aluguel a partir do id
-		// DiscoVO disc5 = new DiscoVO();
-		// disc5.setIdProduto(9L);
-		// disc5.setValorDoAlulguel(8.9);
+		disc.setIdProduto(13L);
+		disc.setTitulo("Abbey Road");
+		disc.setNomeDaBanda("The Beatles");
+		disc.setGenero("Rock");
+		disc.setAnoDeLancamento(1969);
+		disc.setQtdExemplares(2);
+		disc.setValorDoAlulguel(8.0);
 
 		// discdao.inserir(disc);
-		// discdao.alterarValor(disc5);
+		// discdao.alterarValor(disc);
 		// discdao.alterarQuantidade(disc);
-		// discdao.removerById(disc5);
+		// discdao.removerById(disc);
 
-		// Para buscar e mostrar o disco
-		// disc5.setIdProduto(5L);
-		// discdao.buscar(disc5);
-		// System.out.println(disc5);
+		// Busca pelo id do disco:
+		// ResultSet resultdisc;
+		// try {
+		// resultdisc = discdao.buscar(disc);
+		// System.out.println(resultdisc.next());
+		// } catch (Exception e) {
 
-	//	List<DiscoVO> discos = discdao.listar();
-	//	for (DiscoVO disc2 : discos) {
-	//		// System.out.println(disc2);
-	//		System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" + disc2.getNomeDaBanda() + "\t"
-	//				+ disc2.getGenero() + "\t" + disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() + "\t"
-	//				+ disc.getValorDoAluguel());
-	//	}
+		// }
 
 		// ---------- TESTE LIVRO ------------
-		LivroDAO livdao = new LivroDAO();
+		LivroDAO<LivroVO> livdao = new LivroDAO<LivroVO>();
 		LivroVO liv = new LivroVO();
 
-		// liv.setIdProduto(4L);
-		// liv.setTitulo("A Ilha do Tesouro");
-		// liv.setAutor("R. N. Stevenson");
-		// liv.setGenero("Aventura");
-		// liv.setAnoDeLancamento(2019);
-		// liv.setQtdExemplares(1);
-		// liv.setQtdPaginas(368);
-		// liv.setValorDoAlulguel(12.5);
+		liv.setIdProduto(4L);
+		liv.setTitulo("Harry Potter");
+		liv.setAutor("J.K Rowling");
+		liv.setGenero("Ficcao");
+		liv.setAnoDeLancamento(2019);
+		liv.setQtdExemplares(2);
+		liv.setQtdPaginas(400);
+		liv.setValorDoAlulguel(15);
 
 		// livdao.inserir(liv);
-		// livdao.alterarValor(disc);
-		// livdao.alterarQuantidade(disc);
-		// livdao.removerById(disc);
+		// livdao.alterarValor(liv);
+		// livdao.alterarQuantidade(liv);
+		// livdao.removerById(liv);
 
-		// Buscar o livro pelo IdProduto
-		// LivroVO liv5 = new LivroVO();
-		// liv5.setIdProduto(5L);
-		// livdao.buscar(liv5);
-		// System.out.println(liv5);
+		// Busca pelo id do livro:
+		// ResultSet resultliv;
+		// try {
+		// resultliv = livdao.buscar(liv);
+		// System.out.println(resultliv.next());
+		// } catch (Exception e) {
 
-	//	List<LivroVO> livros = livdao.listar();
-	//	for (LivroVO liv2 : livros) {
-			// System.out.println(liv2);
-	//		System.out.println(liv2.getIdProduto() + "\t" + liv2.getTitulo() + "\t" + liv2.getAutor() + "\t"
-	//				+ liv2.getGenero() + "\t" + liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t"
-	//				+ liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
-	//	}
+		// }
 
 		// ---------- TESTE LOCAÇÃO ------------
-		LocacaoDAO locdao = new LocacaoDAO();
+		LocacaoDAO<LocacaoVO> locdao = new LocacaoDAO<LocacaoVO>();
 		LocacaoVO loc = new LocacaoVO();
 
-		// loc.setIdLocacao(4L);
-		// loc.setDataDaLocacao(Calendar.getInstance());
-		// loc.setDataDaDevolucao();
-		// loc.setCliente(cli);
-		// loc.setProduto(disc);
-		// loc.setValorLocacao(8);
-		// loc.setMulta(0);
-		// loc.setDesconto(1.5);
-		// loc.setValorPago(6.5);
-		// loc.setPago(true);
-
-		// LocacaoVO loc5 = new LocacaoVO();
+		loc.setIdLocacao(19L);
+		loc.setDataDaLocacao(Calendar.getInstance());
+		loc.setDataDaDevolucao();
+		loc.setCliente(cli);
+		loc.setProduto(disc);
+		loc.setValorLocacao(20);
+		loc.setMulta(5);
+		loc.setDesconto(2.5);
+		loc.setValorPago(7.5);
+		loc.setPago(false);
 
 		// locdao.inserir(loc);
+		// locdao.removerById(loc);
 
-		// loc5.setIdLocacao(16L);
-		// locdao.removerById(loc5);
+		// Busca pelo id da locação:
+		// ResultSet resultloc;
+		// try {
+		// resultloc = locdao.pesquisarLocacao(loc);
+		// System.out.println(resultloc.next());
+		// } catch (Exception e) {
+
+		// }
 
 	}
 }
