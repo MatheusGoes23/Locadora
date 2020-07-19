@@ -2,6 +2,7 @@ package locadora.Model.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConectarBD {
@@ -21,4 +22,16 @@ public class ConectarBD {
 		} else
 			return connection;
 	}
+
+	public void closeConnection() {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	
 }
