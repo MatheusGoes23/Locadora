@@ -4,12 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import locadora.Model.VO.ClienteVO;
 
 public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
@@ -18,13 +12,12 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 
 	// Lista todos os dados dos clientes existentes no Banco de Dados
 	public ResultSet listar() {
-		connection = getConnection();
 		String sql = "SELECT * FROM cliente";
 		Statement st;
 		ResultSet resultado = null;
 
 		try {
-			st = connection.createStatement();
+			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -33,8 +26,8 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 	}
 
 	/*
-	 * Busca e mostra os dados de um cliente expecífico no Banco de Bados a partir
-	 * do cpf informado
+	 * Busca os dados de um cliente expecífico no Banco de Bados a partir do cpf
+	 * informado
 	 */
 	public ResultSet buscar(VO cliente) {
 		String sql = "SELECT * FROM cliente WHERE cpf=?";
@@ -99,7 +92,7 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 		}
 	}
 
-	// Cadastra todos os dados de um cliente no Banco de Dados
+	// Cadastra os dados de um cliente no Banco de Dados
 	public void inserir(VO cliente) {
 		String sql = "insert into cliente(nome, cpf, telefone, endereco) values(?,?,?,?)";
 		PreparedStatement ptst;

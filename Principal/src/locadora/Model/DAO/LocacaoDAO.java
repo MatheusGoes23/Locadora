@@ -5,24 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import locadora.Model.VO.LocacaoVO;
 
-public class LocacaoDAO extends ConectarBD {
+public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD {
 
 	// Métodos
 
-	// Cadastra todos os dados de uma locação no Banco de Dados
-	public void inserir(LocacaoVO locacao) {
-		connection = getConnection();
+	// Cadastra os dados de uma locação já incluindo disco e livro informados, no
+	// Banco de Dados
+	public void inserir(VO locacao) {
 		String sql = "insert into locacao(dataLocacao, dataDevolucao, cliente, produto, valorLocacao, multa, desconto, valorPago, pago) values(?,?,?,?,?,?,?,?,?)";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setDate(1, new Date(locacao.getDataDaLocacao().getTimeInMillis()));
 			ptst.setDate(2, new Date(locacao.getDataDaDevolucao().getTimeInMillis()));
 			ptst.setLong(3, locacao.getCliente().getIdCliente());
@@ -32,9 +27,20 @@ public class LocacaoDAO extends ConectarBD {
 			ptst.setDouble(7, locacao.getDesconto());
 			ptst.setDouble(8, locacao.getValorPago());
 			ptst.setBoolean(9, locacao.isPago());
-			ptst.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+
+			int affectedRows = ptst.executeUpdate();
+
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				locacao.setIdLocacao(generatedKeys.getLong(1));
+			} else {
+				throw new SQLException("A inserção falhou. Nenhum id foi retornado.");
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 	}
 
@@ -42,23 +48,40 @@ public class LocacaoDAO extends ConectarBD {
 		// toDo
 	}
 
-	/* Remove todos os dados de uma locação específica no Banco de Dados
-	   a partir do IdLocacao informado */
-	public void removerById(LocacaoVO locacao) {
-		connection = getConnection();
+	/*
+	 * Remove os dados de uma locação específica no Banco de Dados a partir do id da
+	 * locacao informado
+	 */
+	public void removerById(VO locacao) {
 		String sql = "DELETE FROM locacao WHERE idLocacao=?";
+		PreparedStatement ptst;
 		try {
-			PreparedStatement ptst = connection.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, locacao.getIdLocacao());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
 		}
 	}
 
-	public void pesquisarLocacao() {
-		// toDo
+	/*
+	 * Busca os dados de uma locacão expecífica no Banco de Bados a partir do id da
+	 * locação informada
+	 */
+	public ResultSet pesquisarLocacao(VO locacao) {
+		String sql = "SELECT * FROM locacao WHERE idLocacao=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, locacao.getIdLocacao());
+			resultado = ptst.executeQuery();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultado;
 	}
 
 	public void imprimirFaturamentoMes() {
@@ -71,35 +94,19 @@ public class LocacaoDAO extends ConectarBD {
 		// toDo
 	}
 
-	// Lista todos os dados das locações existentes no Banco de Dados
-	public List<LocacaoVO> listar() {
-		connection = getConnection();
+	// Lista os dados das locações existentes no Banco de Dados
+	public ResultSet listar() {
 		String sql = "SELECT * FROM locacao";
 		Statement st;
-		ResultSet resultado;
-		List<LocacaoVO> locacoes = new ArrayList<LocacaoVO>();
+		ResultSet resultado = null;
 
 		try {
-			st = connection.createStatement();
+			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
-			while (resultado.next()) {
-				LocacaoVO loc = new LocacaoVO();
-				loc.setIdLocacao(resultado.getLong("IdLocacao"));
-//                loc.setDataDaLocacao(resultado.getDate("dataLocacao"));
-//                loc.setDataDaDevolucao(resultado.getString("nomeBanda"));
-				loc.getCliente().setIdCliente(resultado.getLong("cliente"));
-				loc.getProduto().setIdProduto(resultado.getLong("produto"));
-				loc.setValorLocacao(resultado.getDouble("valorLocacao"));
-				loc.setMulta(resultado.getDouble("multa"));
-				loc.setDesconto(resultado.getDouble("desconto"));
-				loc.setValorPago(resultado.getDouble("valorPago"));
-				loc.setPago(resultado.getBoolean("pago"));
-				locacoes.add(loc);
-			}
 		} catch (SQLException ex) {
-			System.out.println("deu mal");
+			ex.printStackTrace();
 		}
-		return locacoes;
+		return resultado;
 	}
 
 	public void imprimirComprovanteLocacao() {
