@@ -14,5 +14,4 @@ public interface ConectarBDinterDAO<VO> {
 
 	public ResultSet listar() throws SQLException;
 
-	
 }

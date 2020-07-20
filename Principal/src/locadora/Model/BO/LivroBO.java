@@ -1,6 +1,5 @@
 package locadora.Model.BO;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,9 +13,8 @@ import locadora.exception.InsertException;
 public class LivroBO implements LivroInterBO<LivroVO> {
 	static private LivroDAO<LivroVO> dao = new LivroDAO<LivroVO>();
 
-
 	// Métodos
-	
+
 	public void inserir(LivroVO vo) throws InsertException {
 		try {
 			ResultSet rs = dao.buscarByTitle(vo);
@@ -55,7 +53,7 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 			throw new InsertException(e.getMessage());
 		}
 	}
-	
+
 	public void remover(LivroVO vo) throws InsertException {
 		try {
 			ResultSet rs = dao.buscar(vo);

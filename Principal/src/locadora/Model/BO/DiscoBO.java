@@ -34,7 +34,7 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 			if (rs.next()) {
 				dao.alterarValor(vo);
 			} else {
-				throw new InsertException("Impossível alterar, pois não existe um disco com esse Id");
+				throw new InsertException("Impossível alterar, pois não existe nenhum disco com esse Id");
 			}
 		} catch (SQLException e) {
 			throw new InsertException(e.getMessage());
@@ -47,7 +47,7 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 			if (rs.next()) {
 				dao.alterarQuantidade(vo);
 			} else {
-				throw new InsertException("Impossível alterar, pois não existe um disco com esse Id");
+				throw new InsertException("Impossível alterar, pois não existe nenhum disco com esse Id");
 			}
 		} catch (SQLException e) {
 			throw new InsertException(e.getMessage());
@@ -60,7 +60,7 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 			if (rs.next()) {
 				dao.remover(vo);
 			} else {
-				throw new InsertException("Impossível remover, pois não existe um disco com esse Id");
+				throw new InsertException("Impossível remover, pois não existe nenhum disco com esse Id");
 			}
 		} catch (SQLException e) {
 			throw new InsertException(e.getMessage());

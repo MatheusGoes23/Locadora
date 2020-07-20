@@ -1,19 +1,22 @@
 package locadora;
 
+import java.util.Calendar;
+
 import locadora.Model.BO.ClienteBO;
 import locadora.Model.BO.ClienteInterBO;
-import locadora.Model.BO.ConectarBDinterBO;
 import locadora.Model.BO.DiscoBO;
 import locadora.Model.BO.DiscoInterBO;
 import locadora.Model.BO.LivroBO;
 import locadora.Model.BO.LivroInterBO;
-import locadora.Model.BO.ProdutoBO;
+import locadora.Model.BO.LocacaoBO;
+import locadora.Model.BO.LocacaoInterBO;
+import locadora.Model.BO.UsuarioBO;
+import locadora.Model.BO.UsuarioInterBO;
 import locadora.Model.VO.ClienteVO;
 import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
-import locadora.Model.DAO.ClienteDAO;
-import locadora.Model.VO.ProdutoVO;
-import locadora.exception.InsertException;
+import locadora.Model.VO.LocacaoVO;
+import locadora.Model.VO.UsuarioVO;
 
 public class BOTeste {
 
@@ -33,6 +36,23 @@ public class BOTeste {
 		// clibo.alterar(cli);
 		// clibo.remover(cli);
 		// clibo.removerByCPF(cli);
+
+		// } catch (InsertException e) {
+		// e.printStackTrace();
+		// }
+
+		// ----------- TESTE USUÁRIO ------------
+		UsuarioInterBO<UsuarioVO> usubo = new UsuarioBO();
+		UsuarioVO usu = new UsuarioVO();
+
+		usu.setIdUsuario(4L);
+		usu.setLogin("Giovanni");
+		usu.setSenha("123456");
+		usu.setPerfil(2);
+		// try {
+		// usubo.inserir(usu);
+		// usubo.alterar(usu);
+		// usubo.remover(usu);
 
 		// } catch (InsertException e) {
 		// e.printStackTrace();
@@ -74,16 +94,37 @@ public class BOTeste {
 		liv.setQtdPaginas(400);
 		liv.setValorDoAlulguel(99);
 		// try {
-				// livbo.inserir(liv);
-				// livbo.alterarValor(liv);
-				// livbo.alterarQuantidade(liv);
-				// livbo.remover(liv);
+		// livbo.inserir(liv);
+		// livbo.alterarValor(liv);
+		// livbo.alterarQuantidade(liv);
+		// livbo.remover(liv);
 
-				// } catch (InsertException e) {
-				// e.printStackTrace();
-				// }
+		// } catch (InsertException e) {
+		// e.printStackTrace();
+		// }
 
-		
+		// ---------- TESTE LOCAÇÃO ------------
 
+		LocacaoInterBO<LocacaoVO> locbo = new LocacaoBO();
+		LocacaoVO loc = new LocacaoVO();
+
+		loc.setIdLocacao(20L);
+		loc.setDataDaLocacao(Calendar.getInstance());
+		loc.setDataDaDevolucao();
+		loc.setCliente(cli);
+		loc.setProduto(disc);
+		loc.setValorLocacao(20);
+		loc.setMulta(5);
+		loc.setDesconto(2.5);
+		loc.setValorPago(7.5);
+		loc.setPago(false);
+
+		// try {
+		// locbo.inserir(loc);
+		// locbo.remover(loc);
+
+		// } catch (InsertException e) {
+		// e.printStackTrace();
+		// }
 	}
 }

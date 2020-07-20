@@ -1,6 +1,5 @@
 package locadora.Model.DAO;
 
-import locadora.Model.BO.ProdutoBO;
 import locadora.Model.VO.ProdutoVO;
 
 public abstract class ProdutoDAO<VO extends ProdutoVO> extends ConectarBD<VO> {
