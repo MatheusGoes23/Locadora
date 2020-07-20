@@ -21,25 +21,27 @@ public class TesteConn {
 		ClienteDAO<ClienteVO> clidao = new ClienteDAO<ClienteVO>();
 		ClienteVO cli = new ClienteVO();
 
-		cli.setIdCliente(15L);
-		cli.setNome("Matheus Goes");
-		cli.setCpf("987.654.351-00");
+		cli.setIdCliente(2L);
+		cli.setNome("Matress Goes");
+		cli.setCpf("987.654.321-00");
 		cli.setTelefone("(85) 9.9999-9999");
 		cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
 
 		// clidao.inserir(cli);
 		// clidao.alterar(cli);
-		// clidao.removerById(cli);
+		// clidao.remover(cli);
 		// clidao.removerByCPF(cli);
 
-		// Buscar pelo CPF:
-		// ResultSet resultcli;
-		// try {
-		// resultcli = clidao.buscar(cli);
-		// System.out.println(resultcli.next());
-		// } catch (Exception e) {
+		// Buscar pelo CPF ou ID:
+	//	ResultSet resultcli;
+	//	try {
 
-		// }
+		//	resultcli = clidao.buscar(cli);
+		//	resultcli = clidao.buscarByCPF(cli);
+		//	System.out.println(resultcli.next());
+		//} catch (Exception e) {
+
+		//}
 
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioDAO<UsuarioVO> usudao = new UsuarioDAO<UsuarioVO>();
@@ -52,7 +54,7 @@ public class TesteConn {
 
 		// usudao.inserir(usu);
 		// usudao.alterar(usu);
-		// usudao.removerById(usu);
+		// usudao.remover(usu);
 
 		// ---------- TESTE DISCO ------------
 		DiscoDAO<DiscoVO> discdao = new DiscoDAO<DiscoVO>();
@@ -69,7 +71,7 @@ public class TesteConn {
 		// discdao.inserir(disc);
 		// discdao.alterarValor(disc);
 		// discdao.alterarQuantidade(disc);
-		// discdao.removerById(disc);
+		// discdao.remover(disc);
 
 		// Busca pelo id do disco:
 		// ResultSet resultdisc;
@@ -96,7 +98,7 @@ public class TesteConn {
 		// livdao.inserir(liv);
 		// livdao.alterarValor(liv);
 		// livdao.alterarQuantidade(liv);
-		// livdao.removerById(liv);
+		// livdao.remover(liv);
 
 		// Busca pelo id do livro:
 		// ResultSet resultliv;
@@ -123,12 +125,12 @@ public class TesteConn {
 		loc.setPago(false);
 
 		// locdao.inserir(loc);
-		// locdao.removerById(loc);
+		// locdao.remover(loc);
 
 		// Busca pelo id da locação:
 		// ResultSet resultloc;
 		// try {
-		// resultloc = locdao.pesquisarLocacao(loc);
+		// resultloc = locdao.buscar(loc);
 		// System.out.println(resultloc.next());
 		// } catch (Exception e) {
 

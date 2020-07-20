@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import locadora.Model.VO.ClienteVO;
 
-public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
+public class ClienteDAO<VO extends ClienteVO> extends ConectarBD<VO> implements ClienteInterDAO<VO> {
 
 	// Métodos
 
@@ -29,13 +29,31 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 	 * Busca os dados de um cliente expecífico no Banco de Bados a partir do cpf
 	 * informado
 	 */
-	public ResultSet buscar(VO cliente) {
+	public ResultSet buscarByCPF(VO cliente) {
 		String sql = "SELECT * FROM cliente WHERE cpf=?";
 		PreparedStatement ptst;
 		ResultSet resultado = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, cliente.getCpf());
+			resultado = ptst.executeQuery();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultado;
+	}
+
+	/*
+	 * Busca os dados de um cliente expecífico no Banco de Bados a partir do cpf
+	 * informado
+	 */
+	public ResultSet buscar(VO cliente) {
+		String sql = "SELECT * FROM cliente WHERE IdCliente=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, cliente.getIdCliente());
 			resultado = ptst.executeQuery();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -62,14 +80,14 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 
 	/*
 	 * Remove todos os dados de um cliente específico no Banco de Dados a partir do
-	 * cpf informado
+	 * id do cliente informado
 	 */
-	public void removerByCPF(VO cliente) {
-		String sql = "DELETE FROM cliente WHERE cpf=?";
+	public void remover(VO cliente) {
+		String sql = "DELETE FROM cliente WHERE IdCliente=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, cliente.getCpf());
+			ptst.setLong(1, cliente.getIdCliente());
 			ptst.executeUpdate();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -78,14 +96,14 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD {
 
 	/*
 	 * Remove todos os dados de um cliente específico no Banco de Dados a partir do
-	 * IdCliente informado
+	 * cpf informado
 	 */
-	public void removerById(VO cliente) {
-		String sql = "DELETE FROM cliente WHERE IdCliente=?";
+	public void removerByCPF(VO cliente) {
+		String sql = "DELETE FROM cliente WHERE cpf=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, cliente.getIdCliente());
+			ptst.setString(1, cliente.getCpf());
 			ptst.executeUpdate();
 		} catch (SQLException ex) {
 			ex.printStackTrace();

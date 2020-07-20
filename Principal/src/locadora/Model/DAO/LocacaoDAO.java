@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import locadora.Model.VO.LocacaoVO;
 
-public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD {
+public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD<VO> implements LocacaoInterDAO<VO> {
 
 	// Métodos
 
@@ -52,7 +52,7 @@ public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD {
 	 * Remove os dados de uma locação específica no Banco de Dados a partir do id da
 	 * locacao informado
 	 */
-	public void removerById(VO locacao) {
+	public void remover(VO locacao) {
 		String sql = "DELETE FROM locacao WHERE idLocacao=?";
 		PreparedStatement ptst;
 		try {
@@ -69,7 +69,7 @@ public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD {
 	 * Busca os dados de uma locacão expecífica no Banco de Bados a partir do id da
 	 * locação informada
 	 */
-	public ResultSet pesquisarLocacao(VO locacao) {
+	public ResultSet buscar(VO locacao) {
 		String sql = "SELECT * FROM locacao WHERE idLocacao=?";
 		PreparedStatement ptst;
 		ResultSet resultado = null;

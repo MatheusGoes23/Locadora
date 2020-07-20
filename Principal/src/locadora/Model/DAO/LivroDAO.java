@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import locadora.Model.VO.LivroVO;
 
-public class LivroDAO<VO extends LivroVO> extends ConectarBD {
+public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements LivroInterDAO<VO> {
 
 	// Métodos
 
@@ -80,7 +80,7 @@ public class LivroDAO<VO extends LivroVO> extends ConectarBD {
 	 * Remove os dados de um livro específico no Banco de Dados a partir do id do
 	 * livro informado
 	 */
-	public void removerById(VO livro) {
+	public void remover(VO livro) {
 		String sql = "DELETE FROM livro WHERE idLivro=?";
 		PreparedStatement ptst;
 		try {
@@ -119,6 +119,24 @@ public class LivroDAO<VO extends LivroVO> extends ConectarBD {
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, livro.getIdProduto());
+			resultado = ptst.executeQuery();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultado;
+	}
+	/*
+	 * Busca os dados de um livro expecífico no Banco de Bados a partir do titulo do
+	 * livro informado
+	 */
+	public ResultSet buscarByTitle(VO livro) {
+		String sql = "SELECT * FROM livro WHERE titulo=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, livro.getTitulo());
 			resultado = ptst.executeQuery();
 
 		} catch (SQLException ex) {

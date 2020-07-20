@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import locadora.Model.VO.UsuarioVO;
 
-public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD {
+public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements UsuarioInterDAO<VO> {
 
 	// Métodos
 
@@ -58,7 +58,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD {
 	 * Remove os dados de um usuário específico no Banco de Dados a partir do id do
 	 * usuario informado
 	 */
-	public void removerById(VO usuario) {
+	public void remover(VO usuario) {
 		String sql = "DELETE FROM usuario WHERE idUsuario=?";
 		PreparedStatement ptst;
 		try {
@@ -69,6 +69,24 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	/*
+	 * Busca os dados de um usuario expecífico no Banco de Bados a partir do id
+	 * informado
+	 */
+	public ResultSet buscar(VO cliente) {
+		String sql = "SELECT * FROM usuario WHERE IdUsuario=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, cliente.getIdUsuario());
+			resultado = ptst.executeQuery();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultado;
 	}
 
 	// Lista os dados dos usuários existentes no Banco de Dados

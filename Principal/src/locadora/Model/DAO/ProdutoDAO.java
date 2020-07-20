@@ -3,10 +3,10 @@ package locadora.Model.DAO;
 import locadora.Model.BO.ProdutoBO;
 import locadora.Model.VO.ProdutoVO;
 
-public abstract class ProdutoDAO extends ProdutoBO {
+public abstract class ProdutoDAO<VO extends ProdutoVO> extends ConectarBD<VO> {
 
 	// Métodos
-	public void incluirProduto(ProdutoVO produto) {
+	public void incluir(ProdutoVO produto) {
 		// toDo
 	}
 
