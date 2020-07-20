@@ -6,13 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
+import locadora.Model.BO.ClienteBO;
+import locadora.Model.BO.ClienteInterBO;
 import locadora.Model.BO.DiscoBO;
-import locadora.Model.BO.ProdutoBO;
+import locadora.Model.BO.DiscoInterBO;
+import locadora.Model.BO.LivroBO;
+import locadora.Model.BO.LivroInterBO;
 import locadora.Model.VO.ClienteVO;
 import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
 import locadora.Model.VO.LocacaoVO;
 import locadora.Model.VO.UsuarioVO;
+import locadora.exception.InsertException;
 
 public class Principal {
 	public static void main(String[] args) {
@@ -22,11 +27,15 @@ public class Principal {
 		SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
 
 		UsuarioVO usuario = new UsuarioVO(1L, "Webminst", "Giggio51", 3); // ("Cadastro de Usuário - hardcoded")
-		ClienteVO cliente = new ClienteVO(); // Invocação explicita em outra classe
+		ClienteInterBO<ClienteVO> clivo = new ClienteBO();
+		ClienteVO cliente = new ClienteVO(); 
+		// Invocação explicita em outra classe
 
+		LivroInterBO<LivroVO> livvo = new LivroBO();
 		LivroVO livro = new LivroVO();
-		ProdutoBO bo = new DiscoBO();
+		DiscoInterBO<DiscoVO> discvo = new DiscoBO();
 		DiscoVO disco = new DiscoVO();
+		
 		LocacaoVO locacao = new LocacaoVO();
 
 		System.out.println(usuario);
@@ -45,11 +54,16 @@ public class Principal {
 		System.out.println("====================");
 
 		System.out.println(cliente.toString());
-
-		// Entrada de dados para cadastrar um livro
+		try {
+			clivo.inserir(cliente);
+		} catch (InsertException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// Entrada de dados para cadastrar um livro 
 		System.out.println("==================");
 		System.out.println("Cadastro de Livros");
-		livro.setIdProduto(livro.getIdProduto() + 1);
+	//	livro.setIdProduto(livro.getIdProduto() + 1);
 		System.out.print("Nome do livro: ");
 		livro.setTitulo(leitura.nextLine());
 		System.out.print("Autor: ");
@@ -67,14 +81,18 @@ public class Principal {
 		System.out.println("==================");
 
 		System.out.println(livro.toString());
-		bo.alterar(livro);
-		System.out.println(livro.toString());
+		try {
+			livvo.inserir(livro);
+		} catch (InsertException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// Entrada de dados para cadastrar um disco
 		leitura.nextLine();// Limpando o buffer do teclado
 		System.out.println("==================");
 		System.out.println("Cadastro de Discos");
-		disco.setIdProduto(disco.getIdProduto() + 1);
+	//	disco.setIdProduto(disco.getIdProduto() + 1);
 		System.out.print("Nome do disco: ");
 		disco.setTitulo(leitura.nextLine());
 		System.out.print("Banda: ");
@@ -89,9 +107,14 @@ public class Principal {
 		disco.setValorDoAlulguel(leitura.nextDouble());
 		System.out.println("==================");
 
-		System.out.println(livro.toString());
-		bo.alterar(disco);
-		System.out.println(livro.toString());
+		System.out.println(disco.toString());
+		try {
+			discvo.inserir(disco);
+		} catch (InsertException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 
 		// Entrada de dados para cadastrar uma locação
 		leitura.nextLine();// Limpando o buffer do teclado

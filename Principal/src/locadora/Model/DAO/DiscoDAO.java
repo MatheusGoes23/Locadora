@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import locadora.Model.VO.DiscoVO;
 
-public class DiscoDAO<VO extends DiscoVO> extends ConectarBD {
+public class DiscoDAO<VO extends DiscoVO> extends ConectarBD<VO> implements DiscoInterDAO<VO> {
 
 	// Métodos
 
@@ -79,7 +79,7 @@ public class DiscoDAO<VO extends DiscoVO> extends ConectarBD {
 	 * Remove os dados de um disco específico no Banco de Dados a partir do id do
 	 * disco informado
 	 */
-	public void removerById(VO disco) {
+	public void remover(VO disco) {
 		String sql = "DELETE FROM disco WHERE idDisco=?";
 		PreparedStatement ptst;
 		try {
@@ -118,6 +118,25 @@ public class DiscoDAO<VO extends DiscoVO> extends ConectarBD {
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, disco.getIdProduto());
+			resultado = ptst.executeQuery();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return resultado;
+	}
+
+	/*
+	 * Busca os dados de um disco expecífico no Banco de Bados a partir do título do
+	 * disco informado
+	 */
+	public ResultSet buscarByTitle(VO disco) {
+		String sql = "SELECT * FROM disco WHERE titulo=?";
+		PreparedStatement ptst;
+		ResultSet resultado = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, disco.getTitulo());
 			resultado = ptst.executeQuery();
 
 		} catch (SQLException ex) {
