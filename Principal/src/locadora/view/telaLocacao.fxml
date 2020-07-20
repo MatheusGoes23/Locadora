@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@VE/MenuSuperior.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="101.0" fitWidth="751.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@VE/barraDeOpções.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="produtos" layoutX="22.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" />
+      <Button fx:id="clientes" layoutX="100.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Clientes" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="locacao" layoutX="196.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="relatorios" layoutX="297.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="ajuda" layoutX="391.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
+      <Button layoutX="426.0" layoutY="214.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
+      <Button layoutX="527.0" layoutY="214.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Remover" textFill="WHITE" />
+      <Label layoutX="311.0" layoutY="127.0" text="Locação">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="121.0" layoutY="170.0" prefHeight="25.0" prefWidth="235.0" promptText="Clientes..." />
+      <DatePicker layoutX="426.0" layoutY="170.0" prefHeight="25.0" prefWidth="202.0" promptText="dd/mm/aa" />
+      <ComboBox layoutX="121.0" layoutY="216.0" prefHeight="25.0" prefWidth="235.0" promptText="Produtos..." />
+      <TextField fx:id="txtPesquisa14" layoutX="426.0" layoutY="264.0" prefHeight="27.0" prefWidth="202.0" promptText="Valor" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TableView layoutX="121.0" layoutY="256.0" prefHeight="200.0" prefWidth="301.0">
+        <columns>
+          <TableColumn prefWidth="51.0" text="Codigo" />
+          <TableColumn minWidth="0.0" prefWidth="195.0" text="Descrição" />
+            <TableColumn prefWidth="54.0" text="valor" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtPesquisa141" layoutX="426.0" layoutY="299.0" prefHeight="27.0" prefWidth="202.0" promptText="Desconto" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="txtPesquisa1411" layoutX="426.0" layoutY="336.0" prefHeight="27.0" prefWidth="202.0" promptText="Multa" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="txtPesquisa14111" layoutX="426.0" layoutY="373.0" prefHeight="27.0" prefWidth="202.0" promptText="Valor total" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+   </children>
+</Pane>
