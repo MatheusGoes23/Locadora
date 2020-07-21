@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
 import locadora.Model.VO.LocacaoVO;
 
 public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD<VO> implements LocacaoInterDAO<VO> {
@@ -92,21 +94,6 @@ public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD<VO> implements 
 	public void imprimirLocacaoData() {
 		// Lista de itens alugados num determinado período
 		// toDo
-	}
-
-	// Lista os dados das locações existentes no Banco de Dados
-	public ResultSet listar() {
-		String sql = "SELECT * FROM locacao";
-		Statement st;
-		ResultSet resultado = null;
-
-		try {
-			st = getConnection().createStatement();
-			resultado = st.executeQuery(sql);
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		return resultado;
 	}
 
 	public void imprimirComprovanteLocacao() {

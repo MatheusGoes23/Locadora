@@ -4,25 +4,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import locadora.Model.VO.ClienteVO;
+import locadora.Model.VO.UsuarioVO;
 
 public class ClienteDAO<VO extends ClienteVO> extends ConectarBD<VO> implements ClienteInterDAO<VO> {
 
 	// Métodos
 
 	// Lista todos os dados dos clientes existentes no Banco de Dados
-	public ResultSet listar() {
+	public List<ClienteVO> listar() {
 		String sql = "SELECT * FROM cliente";
 		Statement st;
 		ResultSet resultado = null;
-
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
 		try {
 			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
+			while (resultado.next()) {
+				ClienteVO cli = new ClienteVO();
+				cli.setIdCliente(resultado.getLong("idCliente"));
+				cli.setNome(resultado.getString("nome"));
+				cli.setCpf(resultado.getString("cpf"));
+				cli.setTelefone(resultado.getString("telefone"));
+				cli.setEndereco(resultado.getString("endereco"));
+				clientes.add(cli);
+			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return resultado;
+		return clientes;
 	}
 
 	/*

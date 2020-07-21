@@ -2,6 +2,7 @@ package locadora;
 
 import java.sql.ResultSet;
 import java.util.Calendar;
+import java.util.List;
 
 import locadora.Model.DAO.ClienteDAO;
 import locadora.Model.DAO.DiscoDAO;
@@ -31,7 +32,7 @@ public class TesteConn {
 		// clidao.alterar(cli);
 		// clidao.remover(cli);
 		// clidao.removerByCPF(cli);
-
+		
 		// Buscar pelo CPF ou ID:
 	//	ResultSet resultcli;
 	//	try {
@@ -42,6 +43,15 @@ public class TesteConn {
 		//} catch (Exception e) {
 
 		//}
+		
+		//Listar Todos os Clientes
+		/*List<ClienteVO> clientes = clidao.listar();
+        for(ClienteVO cli2: clientes ) {
+//          System.out.println(cli2);
+            System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t" + cli2.getTelefone() + "\t" + cli2.getEndereco());
+
+        }*/
+		
 
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioDAO<UsuarioVO> usudao = new UsuarioDAO<UsuarioVO>();
@@ -56,7 +66,13 @@ public class TesteConn {
 		// usudao.alterar(usu);
 		// usudao.remover(usu);
 		// usudao.autenticar(usu);		
-
+		
+		//Listar Todos os Usuarios
+		/* List<UsuarioVO> usuarios = usudao.listar();
+	        for(UsuarioVO usu2: usuarios) {
+//	            System.out.println(usu2);
+	            System.out.println(usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
+	        }*/
 		// ---------- TESTE DISCO ------------
 		DiscoDAO<DiscoVO> discdao = new DiscoDAO<DiscoVO>();
 		DiscoVO disc = new DiscoVO();
@@ -82,6 +98,17 @@ public class TesteConn {
 		// } catch (Exception e) {
 
 		// }
+		
+		//Listar Todos os Discos
+		/*List<DiscoVO> discos = discdao.listar();
+        for(DiscoVO disc2: discos) {
+        //    System.out.println(disc2);
+            System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" + 
+                               disc2.getNomeDaBanda() + "\t" + disc2.getGenero()+ "\t" + 
+                               disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() +
+                               "\t" + disc.getValorDoAluguel());
+       }*/
+
 
 		// ---------- TESTE LIVRO ------------
 		LivroDAO<LivroVO> livdao = new LivroDAO<LivroVO>();
@@ -109,6 +136,16 @@ public class TesteConn {
 		// } catch (Exception e) {
 
 		// }
+		
+		//Listar Todos os Livros
+		/*List<LivroVO> livros = livdao.listar();
+        for(LivroVO liv2: livros) {
+        //    System.out.println(liv2);
+            System.out.println(liv2.getIdProduto() + "\t" + liv2.getTitulo() + "\t" + 
+                               liv2.getAutor() + "\t" + liv2.getGenero()+ "\t" + 
+                               liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() +
+                               "\t" + liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
+       } */
 
 		// ---------- TESTE LOCAÇÃO ------------
 		LocacaoDAO<LocacaoVO> locdao = new LocacaoDAO<LocacaoVO>();

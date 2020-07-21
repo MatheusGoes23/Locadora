@@ -4,9 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import locadora.Model.VO.DiscoVO;
 
-public class DiscoDAO<VO extends DiscoVO> extends ConectarBD<VO> implements DiscoInterDAO<VO> {
+public class DiscoDAO<VO extends DiscoVO> extends ProdutoDAO<VO> implements DiscoInterDAO<VO> {
 
 	// Métodos
 
@@ -93,18 +96,29 @@ public class DiscoDAO<VO extends DiscoVO> extends ConectarBD<VO> implements Disc
 	}
 
 	// Lista os dados dos discos existentes no Banco de Dados
-	public ResultSet listar() {
+	public List<DiscoVO> listar() {
 		String sql = "SELECT * FROM disco";
 		Statement st;
 		ResultSet resultado = null;
-
+		List<DiscoVO> discos = new ArrayList<DiscoVO>();
 		try {
 			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
+			while (resultado.next()) {
+				DiscoVO disc = new DiscoVO();
+				disc.setIdProduto(resultado.getLong("idDisco"));
+				disc.setTitulo(resultado.getString("titulo"));
+				disc.setNomeDaBanda(resultado.getString("nomeBanda"));
+				disc.setGenero(resultado.getString("genero"));
+				disc.setAnoDeLancamento(resultado.getInt("anoLancamento"));
+				disc.setQtdExemplares(resultado.getInt("qtdExemplares"));
+				disc.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
+				discos.add(disc);
+			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return resultado;
+		return discos;
 	}
 
 	/*

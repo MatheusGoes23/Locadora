@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import locadora.Model.VO.UsuarioVO;
 
 public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements UsuarioInterDAO<VO> {
@@ -90,18 +93,26 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 	}
 
 	// Lista os dados dos usuários existentes no Banco de Dados
-	public ResultSet listar() {
+	public List<UsuarioVO> listar() {
 		String sql = "SELECT * FROM usuario";
 		Statement st;
 		ResultSet resultado = null;
-
+		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
 		try {
 			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
+			while (resultado.next()) {
+				UsuarioVO usu = new UsuarioVO();
+				usu.setIdUsuario(resultado.getLong("IdUsuario"));
+				usu.setLogin(resultado.getString("login"));
+				usu.setSenha(resultado.getString("senha"));
+				usu.setPerfil(resultado.getInt("perfil"));
+				usuarios.add(usu);
+			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return resultado;
+		return usuarios;
 	}
 
 	// Autenticar o usuário, se login e senha estão corretos e mostra o perfil do
