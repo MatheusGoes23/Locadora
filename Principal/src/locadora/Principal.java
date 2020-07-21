@@ -53,17 +53,18 @@ public class Principal {
 		cliente.setEndereco(leitura.nextLine());
 		System.out.println("====================");
 
-		System.out.println(cliente.toString());
+		
 		try {
 			clivo.inserir(cliente);
 		} catch (InsertException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		System.out.println(cliente.toString());
 		// Entrada de dados para cadastrar um livro
 		System.out.println("==================");
 		System.out.println("Cadastro de Livros");
-		// livro.setIdProduto(livro.getIdProduto() + 1);
+		livro.setIdProduto(livro.getIdProduto() + 1);
 		System.out.print("Nome do livro: ");
 		livro.setTitulo(leitura.nextLine());
 		System.out.print("Autor: ");
@@ -80,13 +81,14 @@ public class Principal {
 		livro.setValorDoAlulguel(leitura.nextDouble());
 		System.out.println("==================");
 
-		System.out.println(livro.toString());
+		
 		try {
 			livvo.inserir(livro);
 		} catch (InsertException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(livro.toString());
 
 		// Entrada de dados para cadastrar um disco
 		leitura.nextLine();// Limpando o buffer do teclado

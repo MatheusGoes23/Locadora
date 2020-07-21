@@ -7,5 +7,5 @@ import locadora.exception.InsertException;
 public interface UsuarioInterBO<VO extends UsuarioVO> extends ConectarBDinterBO<VO> {
 	public void alterar(VO vo) throws InsertException;
 
-	public UsuarioVO autenticar(VO vo) throws AutenticationException;
+	public void autenticar(VO vo) throws AutenticationException;
 }

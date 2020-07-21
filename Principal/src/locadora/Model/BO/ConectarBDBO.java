@@ -3,7 +3,6 @@ package locadora.Model.BO;
 import java.util.List;
 
 import locadora.exception.InsertException;
-import locadora.exception.NotFoundException;
 
 public class ConectarBDBO<VO> implements ConectarBDinterBO<VO> {
 

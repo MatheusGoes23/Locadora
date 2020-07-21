@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import locadora.Model.DAO.DiscoDAO;
 import locadora.Model.DAO.LocacaoDAO;
-import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LocacaoVO;
 import locadora.exception.InsertException;
 

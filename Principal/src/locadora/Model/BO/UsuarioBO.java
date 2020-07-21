@@ -67,10 +67,17 @@ public class UsuarioBO implements UsuarioInterBO<UsuarioVO> {
 		return null;
 	}
 
-	@Override
-	public UsuarioVO autenticar(UsuarioVO vo) throws AutenticationException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void autenticar(UsuarioVO vo) throws AutenticationException {
+		try {
+			ResultSet rs = dao.buscar(vo);
+			if (rs.next()) {
+				dao.autenticar(vo);
+			} else {
+				throw new AutenticationException();
+			}
+		} catch (SQLException e) {
+			throw new AutenticationException();
 
+		}
+	}
 }

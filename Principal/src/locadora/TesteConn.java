@@ -47,14 +47,15 @@ public class TesteConn {
 		UsuarioDAO<UsuarioVO> usudao = new UsuarioDAO<UsuarioVO>();
 		UsuarioVO usu = new UsuarioVO();
 
-		usu.setIdUsuario(4L);
-		usu.setLogin("Giovanni");
-		usu.setSenha("123789");
-		usu.setPerfil(2);
+		usu.setIdUsuario(10L);
+		usu.setLogin("Matheus Goes");
+		usu.setSenha("123456");
+		usu.setPerfil(13);
 
 		// usudao.inserir(usu);
 		// usudao.alterar(usu);
 		// usudao.remover(usu);
+		// usudao.autenticar(usu);		
 
 		// ---------- TESTE DISCO ------------
 		DiscoDAO<DiscoVO> discdao = new DiscoDAO<DiscoVO>();
