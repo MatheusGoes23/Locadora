@@ -70,6 +70,7 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 	}
 
 	public List<ClienteVO> listar() throws InsertException {
+		
 		return null;
 	}
 

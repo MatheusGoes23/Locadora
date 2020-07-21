@@ -4,7 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import locadora.Model.VO.LivroVO;
+import locadora.Model.VO.UsuarioVO;
 
 public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements LivroInterDAO<VO> {
 
@@ -94,18 +98,30 @@ public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements Livr
 	}
 
 	// Lista todos os dados dos livros existentes no Banco de Dados
-	public ResultSet listar() {
+	public List<LivroVO> listar() {
 		String sql = "SELECT * FROM livro";
 		Statement st;
 		ResultSet resultado = null;
-
+		List<LivroVO> livros = new ArrayList<LivroVO>();
 		try {
 			st = getConnection().createStatement();
 			resultado = st.executeQuery(sql);
+			while (resultado.next()) {
+				LivroVO liv = new LivroVO();
+				liv.setIdProduto(resultado.getLong("idLivro"));
+				liv.setTitulo(resultado.getString("titulo"));
+				liv.setAutor(resultado.getString("autor"));
+				liv.setGenero(resultado.getString("genero"));
+				liv.setAnoDeLancamento(resultado.getInt("anoLancamento"));
+				liv.setQtdExemplares(resultado.getInt("qtdExemplares"));
+				liv.setQtdPaginas(resultado.getInt("qtdPaginas"));
+				liv.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
+				livros.add(liv);
+			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return resultado;
+		return livros;
 	}
 
 	/*
