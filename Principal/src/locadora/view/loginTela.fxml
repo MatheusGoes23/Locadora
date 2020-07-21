@@ -27,17 +27,17 @@
       </Text>
       <ImageView fitHeight="157.0" fitWidth="157.0" layoutX="14.0" layoutY="14.0">
          <image>
-            <Image url="@../../../../../../../Downloads/29ef97c50f4093e6644e65a64461e73b-recorde-de-silhueta-de-vinil-ano-by-vexels%201.png" />
+            <Image url="@VE/disco.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="145.0" fitWidth="157.0" layoutX="357.0" layoutY="319.0">
          <image>
-            <Image url="@../../../../../../../Downloads/kisspng-book-free-content-clip-art-book-vector-5a89a76222a222%201.png" />
+            <Image url="@VE/livro.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="149.0" fitWidth="200.0" layoutX="164.0" layoutY="58.0">
          <image>
-            <Image url="@../../../../../../../Downloads/logoazuljpg-removebg-preview%202.png" />
+            <Image url="@VE/logo.png" />
          </image>
       </ImageView>
       <PasswordField fx:id="senha" layoutX="154.0" layoutY="294.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-background-color: #FFFFFF; -fx-border-color: #220546;" />

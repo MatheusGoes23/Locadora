@@ -14,7 +14,7 @@ public class TelaLogin extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("loginTela.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("telaLocacao.fxml"));
 		Scene cena = new Scene(root);
 		primaryStage.setTitle("Login");
 		primaryStage.setScene(cena);

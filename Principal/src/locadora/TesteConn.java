@@ -110,7 +110,8 @@ public class TesteConn {
 
 		// }
 
-		// ---------- TESTE LOCAÇÃO ------------
+		// TESTE LOCAÇÃO
+		
 		LocacaoDAO<LocacaoVO> locdao = new LocacaoDAO<LocacaoVO>();
 		LocacaoVO loc = new LocacaoVO();
 
