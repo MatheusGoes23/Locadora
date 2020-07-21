@@ -28,14 +28,14 @@ public class Principal {
 
 		UsuarioVO usuario = new UsuarioVO(1L, "Webminst", "Giggio51", 3); // ("Cadastro de Usuário - hardcoded")
 		ClienteInterBO<ClienteVO> clivo = new ClienteBO();
-		ClienteVO cliente = new ClienteVO(); 
+		ClienteVO cliente = new ClienteVO();
 		// Invocação explicita em outra classe
 
 		LivroInterBO<LivroVO> livvo = new LivroBO();
 		LivroVO livro = new LivroVO();
 		DiscoInterBO<DiscoVO> discvo = new DiscoBO();
 		DiscoVO disco = new DiscoVO();
-		
+
 		LocacaoVO locacao = new LocacaoVO();
 
 		System.out.println(usuario);
@@ -60,10 +60,10 @@ public class Principal {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		// Entrada de dados para cadastrar um livro 
+		// Entrada de dados para cadastrar um livro
 		System.out.println("==================");
 		System.out.println("Cadastro de Livros");
-	//	livro.setIdProduto(livro.getIdProduto() + 1);
+		// livro.setIdProduto(livro.getIdProduto() + 1);
 		System.out.print("Nome do livro: ");
 		livro.setTitulo(leitura.nextLine());
 		System.out.print("Autor: ");
@@ -92,7 +92,7 @@ public class Principal {
 		leitura.nextLine();// Limpando o buffer do teclado
 		System.out.println("==================");
 		System.out.println("Cadastro de Discos");
-	//	disco.setIdProduto(disco.getIdProduto() + 1);
+		// disco.setIdProduto(disco.getIdProduto() + 1);
 		System.out.print("Nome do disco: ");
 		disco.setTitulo(leitura.nextLine());
 		System.out.print("Banda: ");
@@ -114,7 +114,6 @@ public class Principal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 
 		// Entrada de dados para cadastrar uma locação
 		leitura.nextLine();// Limpando o buffer do teclado
@@ -123,6 +122,7 @@ public class Principal {
 		locacao.setIdLocacao(locacao.getIdLocacao() + 1);
 		System.out.print("Data: ");
 		System.out.println(sdf.format(locacao.getDataDaLocacao().getTime()));
+		// Limpando o buffer do teclado
 		System.out.print("CPF: ");
 		locacao.setCliente(cliente);
 		// A ideia é mostrar também o nome do cliente quando for digitado o cpf

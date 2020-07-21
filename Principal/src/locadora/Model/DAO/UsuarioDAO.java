@@ -41,12 +41,12 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 	 * usuario informado
 	 */
 	public void alterar(VO usuario) {
-		String sql = "UPDATE usuario SET senha=? WHERE idUsuario=?";
+		String sql = "UPDATE usuario SET senha=? WHERE login=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, usuario.getSenha());
-			ptst.setLong(2, usuario.getIdUsuario());
+			ptst.setString(2, usuario.getLogin());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -59,11 +59,11 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 	 * usuario informado
 	 */
 	public void remover(VO usuario) {
-		String sql = "DELETE FROM usuario WHERE idUsuario=?";
+		String sql = "DELETE FROM usuario WHERE login=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, usuario.getIdUsuario());
+			ptst.setString(1, usuario.getLogin());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -76,12 +76,12 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 	 * informado
 	 */
 	public ResultSet buscar(VO cliente) {
-		String sql = "SELECT * FROM usuario WHERE IdUsuario=?";
+		String sql = "SELECT * FROM usuario WHERE login=?";
 		PreparedStatement ptst;
 		ResultSet resultado = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, cliente.getIdUsuario());
+			ptst.setString(1, cliente.getLogin());
 			resultado = ptst.executeQuery();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
