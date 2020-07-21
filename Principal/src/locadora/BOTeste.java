@@ -17,6 +17,8 @@ import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
 import locadora.Model.VO.LocacaoVO;
 import locadora.Model.VO.UsuarioVO;
+import locadora.exception.AutenticationException;
+import locadora.exception.InsertException;
 
 public class BOTeste {
 
@@ -53,10 +55,15 @@ public class BOTeste {
 		// usubo.inserir(usu);
 		// usubo.alterar(usu);
 		// usubo.remover(usu);
-
-		// } catch (InsertException e) {
-		// e.printStackTrace();
+		// } catch (InsertException e1) {
+		// e1.printStackTrace();
 		// }
+
+		//try {
+			//usubo.autenticar(usu);
+		//} catch (AutenticationException e) {
+		//	e.printStackTrace();
+		//}
 
 		// ---------- TESTE DISCO ------------
 

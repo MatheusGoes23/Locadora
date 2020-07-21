@@ -3,8 +3,6 @@ package locadora.Model.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import locadora.exception.InsertException;
-
 public interface ConectarBDinterDAO<VO> {
 	public void inserir(VO vo) throws SQLException;
 

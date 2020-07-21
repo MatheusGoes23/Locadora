@@ -75,13 +75,13 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 	 * Busca os dados de um usuario expecífico no Banco de Bados a partir do id
 	 * informado
 	 */
-	public ResultSet buscar(VO cliente) {
+	public ResultSet buscar(VO usuario) {
 		String sql = "SELECT * FROM usuario WHERE login=?";
 		PreparedStatement ptst;
 		ResultSet resultado = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, cliente.getLogin());
+			ptst.setString(1, usuario.getLogin());
 			resultado = ptst.executeQuery();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -103,4 +103,42 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 		}
 		return resultado;
 	}
+
+	// Autenticar o usuário, se login e senha estão corretos e mostra o perfil do
+	// usuário
+	public void autenticar(VO usu) {
+		String sql = "SELECT * FROM usuario";
+		Statement st;
+		ResultSet resultado = null;
+		String situacao = "Não encontrou usuario";
+		try {
+			st = getConnection().createStatement();
+			resultado = st.executeQuery(sql);
+			// encontrar usuario
+
+			while (resultado.next()) {
+				// existe e senha ok. Descobrir se é proprietário, funcionário ou administrador
+				UsuarioVO usuario = new UsuarioVO();
+				usuario.setIdUsuario(resultado.getLong("idUsuario"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setSenha(resultado.getNString("senha"));
+				usuario.setPerfil(resultado.getInt("Perfil"));
+				if ((usuario.getLogin().equals(usu.getLogin()) && (usuario.getSenha().equals(usu.getSenha())))) {
+					if (usuario.getPerfil() == 1)
+						situacao = "Usuário é o Proprietário";
+					else if (usuario.getPerfil() == 2)
+						situacao = "Usuário é o Funcionário";
+					else if (usuario.getPerfil() == 3)
+						situacao = "Usuário é o Administrador";
+
+				}
+			}
+
+			System.out.println(situacao);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Deu mal");
+		}
+	}
+
 }

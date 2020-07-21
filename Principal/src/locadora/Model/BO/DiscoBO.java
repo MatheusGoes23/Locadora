@@ -6,7 +6,6 @@ import java.util.List;
 
 import locadora.Model.DAO.DiscoDAO;
 import locadora.Model.VO.DiscoVO;
-import locadora.Model.VO.LivroVO;
 import locadora.Model.VO.ProdutoVO;
 import locadora.exception.InsertException;
 
