@@ -9,10 +9,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="528.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontController.java">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="528.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
    <children>
-      <Button fx:id="btnCadastrar" alignment="CENTER" layoutX="206.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #27084F; -fx-background-radius: 35; -fx-border-radius: 35;" text="CADASTRE-SE" textFill="WHITE" />
-      <TextField fx:id="login" layoutX="154.0" layoutY="208.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-border-color: #220546; -fx-background-color: #FFFFFF;" />
+      <Button fx:id="btnCadastrar" alignment="CENTER" layoutX="206.0" layoutY="334.0" mnemonicParsing="false" onAction="#inserirUsuario" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #27084F; -fx-background-radius: 35; -fx-border-radius: 35;" text="CADASTRE-SE" textFill="WHITE" />
+      <TextField fx:id="cadLogin" layoutX="154.0" layoutY="208.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-border-color: #220546; -fx-background-color: #FFFFFF;" />
       <Text fill="#220546" layoutX="154.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
             <Font name="Corbel Bold" size="12.0" />
@@ -25,25 +25,19 @@
       </Text>
       <ImageView fitHeight="157.0" fitWidth="157.0" layoutX="14.0" layoutY="14.0">
          <image>
-            <Image url="@../../../../../../../Downloads/29ef97c50f4093e6644e65a64461e73b-recorde-de-silhueta-de-vinil-ano-by-vexels%201.png" />
+            <Image url="@VE/disco.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="137.0" fitWidth="157.0" layoutX="357.0" layoutY="327.0">
          <image>
-            <Image url="@../../../../../../../Downloads/kisspng-book-free-content-clip-art-book-vector-5a89a76222a222%201.png" />
+            <Image url="@VE/livro.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="149.0" fitWidth="200.0" layoutX="164.0" layoutY="40.0">
          <image>
-            <Image url="@../../../../../../../Downloads/logoazuljpg-removebg-preview%202.png" />
+            <Image url="@VE/logo.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="senha" layoutX="154.0" layoutY="272.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-background-color: #FFFFFF; -fx-border-color: #220546;" />
-      <Text fill="#220546" layoutX="154.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-         <font>
-            <Font name="Corbel Bold" size="12.0" />
-         </font>
-      </Text>
-      <PasswordField fx:id="senha1" layoutX="154.0" layoutY="333.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-background-color: #FFFFFF; -fx-border-color: #220546;" />
+      <PasswordField fx:id="cadSenha" layoutX="154.0" layoutY="272.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-background-color: #FFFFFF; -fx-border-color: #220546;" />
    </children>
 </Pane>

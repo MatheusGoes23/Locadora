@@ -67,7 +67,7 @@ public class UsuarioBO implements UsuarioInterBO<UsuarioVO> {
 		return null;
 	}
 
-	public void autenticar(UsuarioVO vo) throws AutenticationException {
+	public UsuarioVO autenticar(UsuarioVO vo) throws AutenticationException {
 		try {
 			ResultSet rs = dao.buscar(vo);
 			if (rs.next()) {
@@ -79,5 +79,6 @@ public class UsuarioBO implements UsuarioInterBO<UsuarioVO> {
 			throw new AutenticationException();
 
 		}
+		return vo;
 	}
 }

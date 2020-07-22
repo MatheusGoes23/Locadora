@@ -33,15 +33,15 @@ public class BOTeste {
 		cli.setCpf("987.654.351-00");
 		cli.setTelefone("(85) 9.9959-9999");
 		cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
-		// try {
-		// clibo.inserir(cli);
-		// clibo.alterar(cli);
-		// clibo.remover(cli);
-		// clibo.removerByCPF(cli);
-
-		// } catch (InsertException e) {
-		// e.printStackTrace();
-		// }
+//		 try {
+//		 clibo.inserir(cli);
+//		// clibo.alterar(cli);
+//		// clibo.remover(cli);
+//		// clibo.removerByCPF(cli);
+//
+//		 } catch (InsertException e) {
+//		 e.printStackTrace();
+//		 }
 
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioInterBO<UsuarioVO> usubo = new UsuarioBO();
@@ -51,13 +51,13 @@ public class BOTeste {
 		usu.setLogin("Giovanni");
 		usu.setSenha("123456");
 		usu.setPerfil(2);
-		// try {
-		// usubo.inserir(usu);
+		 try {
+		 usubo.inserir(usu);
 		// usubo.alterar(usu);
 		// usubo.remover(usu);
-		// } catch (InsertException e1) {
-		// e1.printStackTrace();
-		// }
+		 } catch (InsertException e1) {
+		 e1.printStackTrace();
+		 }
 
 		//try {
 			//usubo.autenticar(usu);
@@ -100,15 +100,15 @@ public class BOTeste {
 		liv.setQtdExemplares(2);
 		liv.setQtdPaginas(400);
 		liv.setValorDoAlulguel(99);
-		// try {
-		// livbo.inserir(liv);
+		 try {
+		 livbo.inserir(liv);
 		// livbo.alterarValor(liv);
 		// livbo.alterarQuantidade(liv);
 		// livbo.remover(liv);
 
-		// } catch (InsertException e) {
-		// e.printStackTrace();
-		// }
+		 } catch (InsertException e) {
+		 e.printStackTrace();
+		 }
 
 		// ---------- TESTE LOCAÇÃO ------------
 

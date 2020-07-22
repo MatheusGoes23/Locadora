@@ -26,17 +26,17 @@
       <Button fx:id="locacao" layoutX="196.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="relatorios" layoutX="297.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="ajuda" layoutX="391.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
-      <Button layoutX="231.0" layoutY="395.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
+      <Button fx:id="btnIncluir" layoutX="231.0" layoutY="395.0" mnemonicParsing="false" onAction="#inserirCliente" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
       <Button layoutX="444.0" layoutY="395.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Cancelar" textFill="WHITE" />
       <Label layoutX="282.0" layoutY="127.0" text="Incluir Cliente" textAlignment="CENTER">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPesquisa1" layoutX="107.0" layoutY="237.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="txtPesquisa11" layoutX="106.0" layoutY="187.0" prefHeight="27.0" prefWidth="364.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="txtPesquisa12" layoutX="477.0" layoutY="186.0" prefHeight="27.0" prefWidth="129.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="txtPesquisa13" layoutX="236.0" layoutY="236.0" prefHeight="27.0" prefWidth="372.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="clienteCPF" layoutX="107.0" layoutY="237.0" prefHeight="27.0" prefWidth="115.0" promptText="000.000.000-00" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="clienteNome" layoutX="106.0" layoutY="187.0" prefHeight="27.0" prefWidth="364.0" promptText="Nome do Cliente..." style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="clienteTelefone" layoutX="477.0" layoutY="186.0" prefHeight="27.0" prefWidth="129.0" promptText="(XX) X.XXXX-XXXX" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="clienteEnd" layoutX="236.0" layoutY="236.0" prefHeight="27.0" prefWidth="372.0" promptText="Rua..." style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
       <Label layoutX="107.0" layoutY="220.0" prefHeight="17.0" prefWidth="50.0" text="CPF" />
       <Label layoutX="109.0" layoutY="170.0" prefHeight="17.0" prefWidth="34.0" text="Nome" />
       <Label layoutX="486.0" layoutY="168.0" prefHeight="17.0" prefWidth="50.0" text="Telefone" />
