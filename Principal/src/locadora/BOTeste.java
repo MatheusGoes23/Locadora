@@ -1,6 +1,7 @@
 package locadora;
 
 import java.util.Calendar;
+import java.util.List;
 
 import locadora.Model.BO.ClienteBO;
 import locadora.Model.BO.ClienteInterBO;
@@ -64,7 +65,12 @@ public class BOTeste {
 		//} catch (AutenticationException e) {
 		//	e.printStackTrace();
 		//}
-
+		//Listar Todos os Usuarios
+		 List<UsuarioVO> usuarios = usubo.listar();
+	        for(UsuarioVO usu2: usuarios) {
+//	            System.out.println(usu2);
+	            System.out.println(usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
+	        }
 		// ---------- TESTE DISCO ------------
 
 		DiscoInterBO<DiscoVO> discbo = new DiscoBO();

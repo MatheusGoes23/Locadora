@@ -68,11 +68,11 @@ public class TesteConn {
 		// usudao.autenticar(usu);		
 		
 		//Listar Todos os Usuarios
-		 List<UsuarioVO> usuarios = usudao.listar();
-	        for(UsuarioVO usu2: usuarios) {
+		// List<UsuarioVO> usuarios = usudao.listar();
+	        //for(UsuarioVO usu2: usuarios) {
 //	            System.out.println(usu2);
-	            System.out.println(usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
-	        }
+	          //  System.out.println(usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
+	      //  }
 		// ---------- TESTE DISCO ------------
 		DiscoDAO<DiscoVO> discdao = new DiscoDAO<DiscoVO>();
 		DiscoVO disc = new DiscoVO();

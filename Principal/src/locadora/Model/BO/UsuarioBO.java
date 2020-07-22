@@ -2,6 +2,7 @@ package locadora.Model.BO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import locadora.Model.DAO.UsuarioDAO;
@@ -61,10 +62,11 @@ public class UsuarioBO implements UsuarioInterBO<UsuarioVO> {
 		return usuario;
 	}
 
-	@Override
-	public List<UsuarioVO> listar() throws InsertException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<UsuarioVO> listar() {
+		List<UsuarioVO> usuarios = dao.listar();
+		
+		return usuarios;
 	}
 
 	public UsuarioVO autenticar(UsuarioVO vo) throws AutenticationException {
