@@ -7,6 +7,7 @@ import java.util.List;
 import locadora.Model.DAO.ClienteDAO;
 import locadora.Model.VO.ClienteVO;
 import locadora.Model.VO.LocacaoVO;
+import locadora.Model.VO.UsuarioVO;
 import locadora.exception.InsertException;
 import locadora.exception.NotFoundException;
 
@@ -69,9 +70,10 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 
 	}
 
-	public List<ClienteVO> listar() throws InsertException {
-		
-		return null;
+	public List<ClienteVO> listar() {
+		List<ClienteVO> clientes = dao.listar();
+
+		return clientes;
 	}
 
 	public void imprimirFichaCliente(ClienteVO cliente, LocacaoVO locacao) {

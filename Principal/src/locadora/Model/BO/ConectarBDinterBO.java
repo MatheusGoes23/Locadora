@@ -9,5 +9,5 @@ public interface ConectarBDinterBO<VO> {
 
 	public void remover(VO vo) throws InsertException;
 
-	public List<VO> listar() throws InsertException;
+	public List<VO> listar();
 }

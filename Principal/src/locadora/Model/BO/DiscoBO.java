@@ -7,13 +7,14 @@ import java.util.List;
 import locadora.Model.DAO.DiscoDAO;
 import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.ProdutoVO;
+import locadora.Model.VO.UsuarioVO;
 import locadora.exception.InsertException;
 
 public class DiscoBO implements DiscoInterBO<DiscoVO> {
 	static private DiscoDAO<DiscoVO> dao = new DiscoDAO<DiscoVO>();
 
 	// Métodos
-	
+
 	public void inserir(DiscoVO vo) throws InsertException {
 		try {
 			ResultSet rs = dao.buscarByTitle(vo);
@@ -67,46 +68,10 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 
 	}
 
-	public ProdutoVO imprimirFicha(ProdutoVO produto) {
-		// Ficha do Livro
-		// toDo
-		DiscoVO disco = new DiscoVO();
-
-		return disco;
-	}
-
-	public ProdutoVO[] pesquisarTitulo(String titulo) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
+	public List<DiscoVO> listar() {
+		List<DiscoVO> discos = dao.listar();
 
 		return discos;
 	}
-
-	public ProdutoVO[] pesquisarAno(int ano) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
-
-		return discos;
-	}
-
-	public ProdutoVO[] pesquisarGenero(String genero) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
-
-		return discos;
-	}
-
-	public void imprimirLista() {
-		// Imprime listagem de discos com Código, Título, QtdExemplares...
-		// public List<DiscoVO> imprimirLista(){
-		// toDo
-	}
-
-	@Override
-	public List<DiscoVO> listar() throws InsertException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }
