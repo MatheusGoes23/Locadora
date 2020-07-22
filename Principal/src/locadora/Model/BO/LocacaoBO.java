@@ -26,10 +26,6 @@ public class LocacaoBO implements LocacaoInterBO<LocacaoVO> {
 		}
 	}
 
-	public void alterarLocacao() {
-		// toDo
-	}
-
 	public void remover(LocacaoVO vo) throws InsertException {
 		try {
 			ResultSet rs = dao.buscar(vo);
@@ -44,32 +40,7 @@ public class LocacaoBO implements LocacaoInterBO<LocacaoVO> {
 
 	}
 
-	public void pesquisarLocacao() {
-		// toDo
-	}
-
-	public void imprimirFaturamentoMes() {
-		// Lista dos itens alugados num determinado mês com os valores somados
-		// toDo
-	}
-
-	public void imprimirLocacaoData() {
-		// Lista de itens alugados num determinado período
-		// toDo
-	}
-
-	public void imprimirLocacaoCliente() {
-		// Lista de itens(codigo e titulo) alugados por um cliente
-		// toDo
-	}
-
-	public void imprimirComprovanteLocacao() {
-		// Um recibo para locação
-		// toDo
-	}
-
-	@Override
-	public List<LocacaoVO> listar() throws InsertException {
+	public List<LocacaoVO> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}

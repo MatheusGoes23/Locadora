@@ -11,5 +11,9 @@ public interface ConectarBDinterBO<VO> {
 
 	public void remover(VO vo) throws InsertException;
 
+<<<<<<< HEAD
 	public List<LivroVO> listar() throws InsertException;
+=======
+	public List<VO> listar();
+>>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
 }

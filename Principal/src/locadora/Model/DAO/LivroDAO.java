@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
 
 public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements LivroInterDAO<VO> {
@@ -159,5 +160,34 @@ public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements Livr
 			ex.printStackTrace();
 		}
 		return resultado;
+	}
+
+	// Recebe um titulo e faz uma pesquisa e retorna os dados do livro com esse
+	// titulo
+	public List<LivroVO> pesquisar(VO livro) {
+		String sql = "SELECT * FROM livro WHERE titulo=?";
+		PreparedStatement st;
+		ResultSet resultado = null;
+		List<LivroVO> livros = new ArrayList<LivroVO>();
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1, livro.getTitulo());
+			resultado = st.executeQuery();
+			while (resultado.next()) {
+				LivroVO liv = new LivroVO();
+				liv.setIdProduto(resultado.getLong("idLivro"));
+				liv.setTitulo(resultado.getString("titulo"));
+				liv.setAutor(resultado.getString("autor"));
+				liv.setGenero(resultado.getString("genero"));
+				liv.setAnoDeLancamento(resultado.getInt("anoLancamento"));
+				liv.setQtdExemplares(resultado.getInt("qtdExemplares"));
+				liv.setQtdPaginas(resultado.getInt("qtdPaginas"));
+				liv.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
+				livros.add(liv);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return livros;
 	}
 }

@@ -5,7 +5,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import locadora.Model.DAO.DiscoDAO;
+import locadora.Model.VO.ClienteVO;
 import locadora.Model.VO.DiscoVO;
+<<<<<<< HEAD
+=======
+import locadora.Model.VO.ProdutoVO;
+import locadora.Model.VO.UsuarioVO;
+>>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
 import locadora.exception.InsertException;
 
 public class DiscoBO implements DiscoInterBO<DiscoVO> {
@@ -72,4 +78,24 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 		return discos;
 	}
 
+<<<<<<< HEAD
+=======
+	public List<DiscoVO> pesquisar(DiscoVO vo) throws InsertException {
+		List<DiscoVO> discos = null;
+		try {
+			ResultSet rs = dao.buscarByTitle(vo);
+
+			if (rs.next()) {
+				List<DiscoVO> discos2 = dao.pesquisar(vo);
+				discos = discos2;
+			} else {
+				throw new InsertException("Impossível encontrar o disco, pois não existe um disco com esse título");
+			}
+		} catch (SQLException e) {
+			throw new InsertException(e.getMessage());
+		}
+		return discos;
+	}
+
+>>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
 }

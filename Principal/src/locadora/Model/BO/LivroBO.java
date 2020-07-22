@@ -6,6 +6,11 @@ import java.util.List;
 
 import locadora.Model.DAO.LivroDAO;
 import locadora.Model.VO.LivroVO;
+<<<<<<< HEAD
+=======
+import locadora.Model.VO.ProdutoVO;
+import locadora.Model.VO.UsuarioVO;
+>>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
 import locadora.exception.InsertException;
 
 public class LivroBO implements LivroInterBO<LivroVO> {
@@ -68,7 +73,32 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 
 	public List<LivroVO> listar() {
 		List<LivroVO> livros = dao.listar();
+<<<<<<< HEAD
 		
 		return livros;
 	}
 }
+=======
+
+		return livros;
+	}
+
+	public List<LivroVO> pesquisar(LivroVO vo) throws InsertException {
+		List<LivroVO> livros = null;
+		try {
+			ResultSet rs = dao.buscarByTitle(vo);
+
+			if (rs.next()) {
+				List<LivroVO> livros2 = dao.pesquisar(vo);
+				livros = livros2;
+			} else {
+				throw new InsertException("Impossível encontrar o livro, pois não existe um livro com esse título");
+			}
+		} catch (SQLException e) {
+			throw new InsertException(e.getMessage());
+		}
+		return livros;
+	}
+
+}
+>>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e

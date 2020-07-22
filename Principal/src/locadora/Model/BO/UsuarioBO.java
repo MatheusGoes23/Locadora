@@ -61,10 +61,9 @@ public class UsuarioBO implements UsuarioInterBO<UsuarioVO> {
 		return usuario;
 	}
 
-	
 	public List<UsuarioVO> listar() {
 		List<UsuarioVO> usuarios = dao.listar();
-		
+
 		return usuarios;
 	}
 
