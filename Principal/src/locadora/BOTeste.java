@@ -51,13 +51,13 @@ public class BOTeste {
 		usu.setLogin("Giovanni");
 		usu.setSenha("123456");
 		usu.setPerfil(2);
-		 try {
-		 usubo.inserir(usu);
+		// try {
+		// usubo.inserir(usu);
 		// usubo.alterar(usu);
 		// usubo.remover(usu);
-		 } catch (InsertException e1) {
-		 e1.printStackTrace();
-		 }
+		// } catch (InsertException e1) {
+		// e1.printStackTrace();
+		// }
 
 		//try {
 			//usubo.autenticar(usu);
@@ -100,15 +100,15 @@ public class BOTeste {
 		liv.setQtdExemplares(2);
 		liv.setQtdPaginas(400);
 		liv.setValorDoAlulguel(99);
-		 try {
-		 livbo.inserir(liv);
+		// try {
+		// livbo.inserir(liv);
 		// livbo.alterarValor(liv);
 		// livbo.alterarQuantidade(liv);
 		// livbo.remover(liv);
 
-		 } catch (InsertException e) {
-		 e.printStackTrace();
-		 }
+		// } catch (InsertException e) {
+		// e.printStackTrace();
+		// }
 
 		// ---------- TESTE LOCAÇÃO ------------
 
