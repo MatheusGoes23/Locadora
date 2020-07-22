@@ -10,8 +10,6 @@ public interface ClienteInterBO<VO extends ClienteVO> extends ConectarBDinterBO<
 	public void removerByCPF(VO vo) throws InsertException;
 
 	public void alterar(VO vo) throws InsertException;
-	
-	public List<VO> listar() throws InsertException;
 
 	public void buscar(VO vo) throws NotFoundException;
 }
