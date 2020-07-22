@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import locadora.Model.VO.DiscoVO;
+import locadora.Model.VO.LivroVO;
 
 public class DiscoDAO<VO extends DiscoVO> extends ProdutoDAO<VO> implements DiscoInterDAO<VO> {
 
@@ -158,4 +159,33 @@ public class DiscoDAO<VO extends DiscoVO> extends ProdutoDAO<VO> implements Disc
 		}
 		return resultado;
 	}
+
+	// Recebe um titulo e faz uma pesquisa e retorna os dados do disco com esse
+	// titulo
+	public List<DiscoVO> pesquisar(VO disco) {
+		String sql = "SELECT * FROM disco WHERE titulo=?";
+		PreparedStatement st;
+		ResultSet resultado = null;
+		List<DiscoVO> discos = new ArrayList<DiscoVO>();
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1, disco.getTitulo());
+			resultado = st.executeQuery();
+			while (resultado.next()) {
+				DiscoVO disc = new DiscoVO();
+				disc.setIdProduto(resultado.getLong("idDisco"));
+				disc.setTitulo(resultado.getString("titulo"));
+				disc.setNomeDaBanda(resultado.getString("nomeBanda"));
+				disc.setGenero(resultado.getString("genero"));
+				disc.setAnoDeLancamento(resultado.getInt("anoLancamento"));
+				disc.setQtdExemplares(resultado.getInt("qtdExemplares"));
+				disc.setValorDoAlulguel(resultado.getDouble("valorAluguel"));
+				discos.add(disc);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return discos;
+	}
+
 }

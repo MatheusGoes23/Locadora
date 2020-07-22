@@ -76,15 +76,24 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 		return clientes;
 	}
 
-	public void imprimirFichaCliente(ClienteVO cliente, LocacaoVO locacao) {
-		// Imprime um lista de Clientes com CPF, Nome, Telefone...
-		// toDo
+	public List<ClienteVO> pesquisar(ClienteVO vo) throws InsertException {
+		List<ClienteVO> clientes = null;
+		try {
+			ResultSet rs = dao.buscarByCPF(vo);
+			
+			if (rs.next()) {
+				List<ClienteVO> clientes2 = dao.pesquisar(vo);
+				clientes = clientes2;
+			} else {
+				throw new InsertException("Impossível encontrar usúario, pois não existe um cliente com esse CPF");
+			}
+		} catch (SQLException e) {
+			throw new InsertException(e.getMessage());
+		}
+		return clientes;
 	}
+	
 
-	@Override
-	public void buscar(ClienteVO vo) throws NotFoundException {
-		// TODO Auto-generated method stub
 
-	}
 
 }

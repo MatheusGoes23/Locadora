@@ -44,6 +44,21 @@ public class BOTeste {
 //		 e.printStackTrace();
 //		 }
 
+		// Pesquisa e mostra um cliente específico
+		List<ClienteVO> clientes = null;
+		try {
+			clientes = clibo.pesquisar(cli);
+		} catch (InsertException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (ClienteVO cli2 : clientes) {
+//          System.out.println(cli2);
+			System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t"
+					+ cli2.getTelefone() + "\t" + cli2.getEndereco());
+
+		}
+
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioInterBO<UsuarioVO> usubo = new UsuarioBO();
 		UsuarioVO usu = new UsuarioVO();
@@ -60,17 +75,17 @@ public class BOTeste {
 		// e1.printStackTrace();
 		// }
 
-		//try {
-			//usubo.autenticar(usu);
-		//} catch (AutenticationException e) {
-		//	e.printStackTrace();
-		//}
-		//Listar Todos os Usuarios
-		 List<UsuarioVO> usuarios = usubo.listar();
-	        for(UsuarioVO usu2: usuarios) {
-//	            System.out.println(usu2);
-	            System.out.println(usu2.getIdUsuario() + "\t" + usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil());
-	        }
+		// try {
+		// usubo.autenticar(usu);
+		// } catch (AutenticationException e) {
+		// e.printStackTrace();
+		// }
+		// Listar Todos os Usuarios
+		/*
+		 * List<UsuarioVO> usuarios = usubo.listar(); for(UsuarioVO usu2: usuarios) { //
+		 * System.out.println(usu2); System.out.println(usu2.getIdUsuario() + "\t" +
+		 * usu2.getLogin() + "\t" + usu2.getSenha() + "\t" + usu2.getPerfil()); }
+		 */
 		// ---------- TESTE DISCO ------------
 
 		DiscoInterBO<DiscoVO> discbo = new DiscoBO();
@@ -92,6 +107,17 @@ public class BOTeste {
 		// } catch (InsertException e) {
 		// e.printStackTrace();
 		// }
+
+		// Pesquisa e mostra um cliente específico
+		/*
+		 * List<DiscoVO> discos = null; try { discos = discbo.pesquisar(disc); } catch
+		 * (InsertException e) { // TODO Auto-generated catch block e.printStackTrace();
+		 * } for(DiscoVO disc2: discos) { // System.out.println(disc2);
+		 * System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" +
+		 * disc2.getNomeDaBanda() + "\t" + disc2.getGenero()+ "\t" +
+		 * disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() + "\t" +
+		 * disc.getValorDoAluguel()); }
+		 */
 
 		// ---------- TESTE DISCO ------------
 
@@ -115,6 +141,21 @@ public class BOTeste {
 		// } catch (InsertException e) {
 		// e.printStackTrace();
 		// }
+
+		// Pequisar e imprimir um disco específico
+		List<LivroVO> livros = null;
+		try {
+			livros = livbo.pesquisar(liv);
+		} catch (InsertException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (LivroVO liv2 : livros) {
+			// System.out.println(liv2);
+			System.out.println(liv2.getIdProduto() + "\t" + liv2.getTitulo() + "\t" + liv2.getAutor() + "\t"
+					+ liv2.getGenero() + "\t" + liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t"
+					+ liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
+		}
 
 		// ---------- TESTE LOCAÇÃO ------------
 
