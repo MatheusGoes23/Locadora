@@ -138,6 +138,7 @@ public class FrontController {
 	   vo.setTitulo(livroTitulo.getText());
 	   vo.setGenero(livroGenero.getText());
 	   vo.setAnoDeLancamento(Integer.parseInt(livroLancamento.getText()));
+	   vo.setQtdExemplares(Integer.parseInt(livroQuant.getText()));
 	   vo.setQtdPaginas(Integer.parseInt(livroPaginas.getText()));
 	   vo.setValorDoAlulguel(Double.parseDouble(livroValor.getText()));
 	   
