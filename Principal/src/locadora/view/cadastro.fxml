@@ -18,7 +18,7 @@
             <Font name="Corbel Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="#220546" layoutX="154.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fill="#220546" layoutX="154.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
          <font>
             <Font name="Corbel Bold" size="12.0" />
          </font>
@@ -39,5 +39,6 @@
          </image>
       </ImageView>
       <PasswordField fx:id="cadSenha" layoutX="154.0" layoutY="272.0" prefHeight="47.0" prefWidth="220.0" style="-fx-border-radius: 10; -fx-background-color: #FFFFFF; -fx-border-color: #220546;" />
+      <Button fx:id="btnCadastrar1" alignment="CENTER" layoutX="213.0" layoutY="378.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #243078; -fx-background-radius: 35; -fx-border-radius: 35;" text="Voltar" textFill="WHITE" />
    </children>
 </Pane>

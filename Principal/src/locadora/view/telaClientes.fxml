@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#iniciarTabelaCliente" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,14 +23,15 @@
          </image>
       </ImageView>
       <Button fx:id="produtos" layoutX="22.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
-      <TableView layoutX="13.0" layoutY="187.0" prefHeight="188.0" prefWidth="707.0">
+      <TableView fx:id="tbClientes" layoutX="13.0" layoutY="187.0" prefHeight="188.0" prefWidth="707.0">
         <columns>
-          <TableColumn prefWidth="171.0" text="CPF" />
-          <TableColumn prefWidth="377.0" text="Nome" />
-            <TableColumn prefWidth="158.0" text="Telefone" />
+          <TableColumn fx:id="tbCpfCliente" prefWidth="120.0" text="CPF" />
+          <TableColumn fx:id="tbNomeCliente" prefWidth="234.0" text="Nome" />
+            <TableColumn fx:id="tbEndCliente" prefWidth="226.0" text="Endereço" />
+            <TableColumn fx:id="tbTelefoneCliente" prefWidth="126.0" text="Telefone" />
         </columns>
       </TableView>
-      <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;">
+      <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" onAction="#iniciarTabelaCliente" style="-fx-background-color: #FFFFFF;">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +45,7 @@
       <Button fx:id="locacao" layoutX="196.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="relatorios" layoutX="297.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="ajuda" layoutX="391.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
-      <Button layoutX="77.0" layoutY="395.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
+      <Button layoutX="77.0" layoutY="395.0" mnemonicParsing="false" onAction="#telaIncluirClientes" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
       <Button layoutX="326.0" layoutY="395.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Alterar" textFill="WHITE" />
       <Button layoutX="575.0" layoutY="395.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Excluir" textFill="WHITE" />
       <Label layoutX="316.0" layoutY="133.0" text="Clientes">

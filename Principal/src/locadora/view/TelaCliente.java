@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TelaLogin extends Application {
+public class TelaCliente extends Application {
 	private static Stage stage;
  	
 	public static void main(String[] args) {
@@ -16,9 +16,9 @@ public class TelaLogin extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("loginTela.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("telaClientes.fxml"));
 		Scene cena = new Scene(root);
-		primaryStage.setTitle("Login");
+		primaryStage.setTitle("Clientes");
 		primaryStage.setScene(cena);
 		primaryStage.show();
 		setStage(stage);
@@ -31,6 +31,6 @@ public class TelaLogin extends Application {
 	}
 	
 	public static void setStage(Stage stage) {
-		TelaLogin.stage = stage;
+		TelaCliente.stage = stage;
 	}
 }

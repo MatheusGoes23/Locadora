@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import locadora.Model.VO.LivroVO;
-import locadora.Model.VO.UsuarioVO;
 
 public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements LivroInterDAO<VO> {
 

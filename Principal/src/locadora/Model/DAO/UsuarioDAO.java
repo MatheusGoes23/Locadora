@@ -132,7 +132,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends ConectarBD<VO> implements 
 				UsuarioVO usuario = new UsuarioVO();
 				usuario.setIdUsuario(resultado.getLong("idUsuario"));
 				usuario.setLogin(resultado.getString("login"));
-				usuario.setSenha(resultado.getNString("senha"));
+				usuario.setSenha(resultado.getString("senha"));
 				usuario.setPerfil(resultado.getInt("Perfil"));
 				if ((usuario.getLogin().equals(usu.getLogin()) && (usuario.getSenha().equals(usu.getSenha())))) {
 					if (usuario.getPerfil() == 1)

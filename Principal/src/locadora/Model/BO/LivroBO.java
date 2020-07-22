@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import locadora.Model.DAO.LivroDAO;
-import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
-import locadora.Model.VO.ProdutoVO;
 import locadora.exception.InsertException;
 
 public class LivroBO implements LivroInterBO<LivroVO> {
@@ -68,43 +66,9 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 
 	}
 
-	public ProdutoVO imprimirFicha(ProdutoVO produto) {
-		// Ficha do Livro
-		// toDo
-		DiscoVO disco = new DiscoVO();
-
-		return disco;
-	}
-
-	public ProdutoVO[] pesquisarTitulo(String titulo) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
-
-		return discos;
-	}
-
-	public ProdutoVO[] pesquisarAno(int ano) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
-
-		return discos;
-	}
-
-	public ProdutoVO[] pesquisarGenero(String genero) {
-		// toDo
-		DiscoVO discos[] = new DiscoVO[5];
-
-		return discos;
-	}
-
-	public void imprimirLista() {
-		// Imprime listagem de discos com Código, Título, QtdExemplares...
-		// toDo
-	}
-
-	@Override
-	public List<LivroVO> listar() throws InsertException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LivroVO> listar() {
+		List<LivroVO> livros = dao.listar();
+		
+		return livros;
 	}
 }
