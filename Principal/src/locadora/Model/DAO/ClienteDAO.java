@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import locadora.Model.VO.ClienteVO;
+import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.UsuarioVO;
 
 public class ClienteDAO<VO extends ClienteVO> extends ConectarBD<VO> implements ClienteInterDAO<VO> {
@@ -149,5 +150,32 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD<VO> implements 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	// Recebe um titulo e faz uma pesquisa e retorna os dados do cliente com esse
+	// titulo
+	public List<ClienteVO> pesquisar(VO cliente) {
+		String sql = "SELECT * FROM cliente WHERE CPF=?";
+		PreparedStatement st;
+		ResultSet resultado = null;
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1, cliente.getCpf());
+			resultado = st.executeQuery();
+			while (resultado.next()) {
+				ClienteVO cli = new ClienteVO();
+				cli.setIdCliente(resultado.getLong("idCliente"));
+				cli.setCpf(resultado.getString("cpf"));
+				cli.setNome(resultado.getString("nome"));
+				cli.setTelefone(resultado.getString("telefone"));
+				cli.setEndereco(resultado.getString("endereco"));
+
+				clientes.add(cli);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return clientes;
 	}
 }

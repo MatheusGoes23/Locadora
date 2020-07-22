@@ -71,7 +71,25 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 
 	public List<LivroVO> listar() {
 		List<LivroVO> livros = dao.listar();
-		
+
 		return livros;
 	}
+
+	public List<LivroVO> pesquisar(LivroVO vo) throws InsertException {
+		List<LivroVO> livros = null;
+		try {
+			ResultSet rs = dao.buscarByTitle(vo);
+
+			if (rs.next()) {
+				List<LivroVO> livros2 = dao.pesquisar(vo);
+				livros = livros2;
+			} else {
+				throw new InsertException("Impossível encontrar o livro, pois não existe um livro com esse título");
+			}
+		} catch (SQLException e) {
+			throw new InsertException(e.getMessage());
+		}
+		return livros;
+	}
+
 }

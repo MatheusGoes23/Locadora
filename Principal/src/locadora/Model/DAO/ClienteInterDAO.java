@@ -10,8 +10,10 @@ public interface ClienteInterDAO<VO extends ClienteVO> extends ConectarBDinterDA
 	public void alterar(VO vo) throws SQLException;
 
 	public ResultSet buscarByCPF(VO vo) throws SQLException;
-	
+
 	public List<ClienteVO> listar() throws SQLException;
+
+	public List<ClienteVO> pesquisar(VO cliente) throws SQLException;
 
 	public void removerByCPF(VO vo) throws SQLException;
 

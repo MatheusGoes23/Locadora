@@ -23,8 +23,8 @@ public class TesteConn {
 		ClienteVO cli = new ClienteVO();
 
 		cli.setIdCliente(2L);
-		cli.setNome("Matress Goes");
-		cli.setCpf("987.654.321-00");
+		cli.setNome("aaaaaa");
+		cli.setCpf("987.654.381-00");
 		cli.setTelefone("(85) 9.9999-9999");
 		cli.setEndereco("Rua Ceara, 404 - Casa 08 - Ceara");
 
@@ -52,7 +52,13 @@ public class TesteConn {
 
         }*/
 		
+		//Pequisar e imprimir um cliente específico
+		/*		List<ClienteVO> clientes = clidao.pesquisar(cli);
+		        for(ClienteVO cli2: clientes ) {
+//		          System.out.println(cli2);
+		            System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t" + cli2.getTelefone() + "\t" + cli2.getEndereco());
 
+		        }*/
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioDAO<UsuarioVO> usudao = new UsuarioDAO<UsuarioVO>();
 		UsuarioVO usu = new UsuarioVO();
@@ -109,6 +115,18 @@ public class TesteConn {
                                "\t" + disc.getValorDoAluguel());
        }*/
 
+		
+		//Pequisar e imprimir um disco específico
+			/*	List<DiscoVO> discos = discdao.pesquisar(disc);
+		        for(DiscoVO disc2: discos) {
+		        //    System.out.println(disc2);
+		            System.out.println(disc2.getIdProduto() + "\t" + disc2.getTitulo() + "\t" + 
+		                               disc2.getNomeDaBanda() + "\t" + disc2.getGenero()+ "\t" + 
+		                               disc2.getAnoDeLancamento() + "\t" + disc2.getQtdExemplares() +
+		                               "\t" + disc.getValorDoAluguel());
+		       }
+*/
+		
 
 		// ---------- TESTE LIVRO ------------
 		LivroDAO<LivroVO> livdao = new LivroDAO<LivroVO>();
@@ -146,7 +164,16 @@ public class TesteConn {
                                liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() +
                                "\t" + liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
        } */
-
+		
+		// Pequisar e imprimir um disco específico
+		/*
+		 * List<LivroVO> livros = livdao.pesquisar(liv); for(LivroVO liv2: livros) { //
+		 * System.out.println(liv2); System.out.println(liv2.getIdProduto() + "\t" +
+		 * liv2.getTitulo() + "\t" + liv2.getAutor() + "\t" + liv2.getGenero()+ "\t" +
+		 * liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t" +
+		 * liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel()); }
+		 */
+		
 		// TESTE LOCAÇÃO
 		
 		LocacaoDAO<LocacaoVO> locdao = new LocacaoDAO<LocacaoVO>();
