@@ -45,7 +45,7 @@ public class BOTeste {
 //		 }
 
 		// Pesquisa e mostra um cliente específico
-		List<ClienteVO> clientes = null;
+		/*List<ClienteVO> clientes = null;
 		try {
 			clientes = clibo.pesquisar(cli);
 		} catch (InsertException e) {
@@ -57,7 +57,7 @@ public class BOTeste {
 			System.out.println(cli2.getIdCliente() + "\t" + cli2.getCpf() + "\t" + cli2.getNome() + "\t"
 					+ cli2.getTelefone() + "\t" + cli2.getEndereco());
 
-		}
+		}*/
 
 		// ----------- TESTE USUÁRIO ------------
 		UsuarioInterBO<UsuarioVO> usubo = new UsuarioBO();
@@ -119,7 +119,7 @@ public class BOTeste {
 		 * disc.getValorDoAluguel()); }
 		 */
 
-		// ---------- TESTE DISCO ------------
+		// ---------- TESTE LIVRO ------------
 
 		LivroInterBO<LivroVO> livbo = new LivroBO();
 		LivroVO liv = new LivroVO();
@@ -143,7 +143,7 @@ public class BOTeste {
 		// }
 
 		// Pequisar e imprimir um disco específico
-		List<LivroVO> livros = null;
+		/*List<LivroVO> livros = null;
 		try {
 			livros = livbo.pesquisar(liv);
 		} catch (InsertException e) {
@@ -156,7 +156,7 @@ public class BOTeste {
 					+ liv2.getGenero() + "\t" + liv2.getAnoDeLancamento() + "\t" + liv2.getQtdExemplares() + "\t"
 					+ liv2.getQtdPaginas() + "\t" + liv2.getValorDoAluguel());
 		}
-
+*/
 		// ---------- TESTE LOCAÇÃO ------------
 
 		LocacaoInterBO<LocacaoVO> locbo = new LocacaoBO();

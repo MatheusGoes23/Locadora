@@ -7,11 +7,10 @@ import java.util.List;
 import locadora.Model.DAO.DiscoDAO;
 import locadora.Model.VO.ClienteVO;
 import locadora.Model.VO.DiscoVO;
-<<<<<<< HEAD
-=======
+
 import locadora.Model.VO.ProdutoVO;
 import locadora.Model.VO.UsuarioVO;
->>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
+
 import locadora.exception.InsertException;
 
 public class DiscoBO implements DiscoInterBO<DiscoVO> {
@@ -78,8 +77,7 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 		return discos;
 	}
 
-<<<<<<< HEAD
-=======
+
 	public List<DiscoVO> pesquisar(DiscoVO vo) throws InsertException {
 		List<DiscoVO> discos = null;
 		try {
@@ -97,5 +95,5 @@ public class DiscoBO implements DiscoInterBO<DiscoVO> {
 		return discos;
 	}
 
->>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
+
 }

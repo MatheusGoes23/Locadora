@@ -18,12 +18,6 @@ public class ConectarBDBO<VO> implements ConectarBDinterBO<VO> {
 
 	}
 
-	@Override
-	public List<VO> listar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 
 }
