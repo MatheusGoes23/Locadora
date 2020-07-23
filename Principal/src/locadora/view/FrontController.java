@@ -329,6 +329,10 @@ public void iniciarTabelaCliente() throws InsertException {
 	   Telas.cadastroLivros();
    }
    
+   public void telaAlterarLivros(ActionEvent event) throws Exception{
+	   Telas.alterarLivros();
+   }
+   
    public void telaClientes(ActionEvent event) throws Exception {
 	   Telas.telaClientes();
    }
@@ -381,6 +385,27 @@ public void iniciarTabelaCliente() throws InsertException {
 	   livroQuant.setText("");
 	   livroValor.setText("");
 	   livroPaginas.setText("");
+   }
+   
+   public void alterarLivro() throws InsertException{
+	   LivroVO alt = new LivroVO();
+	   
+	   alt.setAutor(livroAutor.getText());
+	   alt.setTitulo(livroTitulo.getText());
+	   alt.setGenero(livroGenero.getText());
+	   alt.setAnoDeLancamento(Integer.parseInt(livroLancamento.getText()));
+	   alt.setQtdExemplares(Integer.parseInt(livroQuant.getText()));
+	   alt.setValorDoAlulguel(Double.parseDouble(livroValor.getText()));
+	   
+	   livroBO.alterarQuantidade(alt);
+	   livroBO.alterarValor(alt);
+	   
+	   livroTitulo.setText("");
+	   livroAutor.setText("");
+	   livroGenero.setText("");
+	   livroLancamento.setText("");
+	   livroQuant.setText("");
+	   livroValor.setText("");
    }
    
    public ObservableList<LivroVO> buscarLivro() {
