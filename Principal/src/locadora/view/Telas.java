@@ -60,6 +60,13 @@ public class Telas extends Application {
 		
 		primaryStage.setScene(cena);
 	}
+	public static void alterarVinil() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("telaAlterarVinis.fxml"));
+		
+		Scene cena = new Scene(root);
+		
+		primaryStage.setScene(cena);
+	}
 	
 	public static void inicialVinil() throws Exception {
 		Parent root = FXMLLoader.load(Telas.class.getResource("telaInicialVinis.fxml"));

@@ -45,5 +45,7 @@
       <Label layoutX="515.0" layoutY="262.0" prefHeight="17.0" prefWidth="34.0" text="Valor" />
       <TextField fx:id="txtAlteraQuant" layoutX="589.0" layoutY="278.0" prefHeight="27.0" prefWidth="57.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
       <Label layoutX="589.0" layoutY="262.0" prefHeight="17.0" prefWidth="69.0" text="Quantidade" />
+      <Label layoutX="114.0" layoutY="176.0" text="ID:" />
+      <Label fx:id="idAlterarVinil" layoutX="132.0" layoutY="176.0" />
    </children>
 </Pane>

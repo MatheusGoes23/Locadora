@@ -49,12 +49,12 @@ public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements Livr
 	 * do id do livro informado
 	 */
 	public void alterarValor(VO livro) {
-		String sql = "UPDATE livro SET valorAluguel=? WHERE idLivro=?";
+		String sql = "UPDATE livro SET valorAluguel=? WHERE titulo=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setDouble(1, livro.getValorDoAluguel());
-			ptst.setLong(2, livro.getIdProduto());
+			ptst.setString(2, livro.getTitulo());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -67,12 +67,12 @@ public class LivroDAO<VO extends LivroVO> extends ProdutoDAO<VO> implements Livr
 	 * partir do id do livro informado
 	 */
 	public void alterarQuantidade(VO livro) {
-		String sql = "UPDATE livro SET qtdExemplares=? WHERE idLivro=?";
+		String sql = "UPDATE livro SET qtdExemplares=? WHERE titulo=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setDouble(1, livro.getQtdExemplares());
-			ptst.setLong(2, livro.getIdProduto());
+			ptst.setString(2, livro.getTitulo());
 			ptst.executeUpdate();
 
 		} catch (SQLException ex) {

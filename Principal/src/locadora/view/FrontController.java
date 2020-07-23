@@ -107,6 +107,7 @@ public class FrontController implements Initializable{
 	@FXML private TableView <DiscoVO> tbDiscos;
 	
 	//ALTERAR VINIL
+	@FXML private Label idAlterarVinil;
 	@FXML private TextField txtAlteraTitulo;
     @FXML private TextField txtAlteraBanda;
     @FXML private TextField txtAlteraGenero;
@@ -121,7 +122,8 @@ public class FrontController implements Initializable{
 	private ObservableList<LivroVO> livroLista = FXCollections.observableArrayList();
 	private ObservableList<DiscoVO> discoLista = FXCollections.observableArrayList();
 	private ObservableList<ClienteVO> clienteLista = FXCollections.observableArrayList();
-			
+	
+
 	
 	//CHAMADAS
 	UsuarioInterBO<UsuarioVO> usuBO = new UsuarioBO();
@@ -271,6 +273,8 @@ public void iniciarTabelaCliente() throws InsertException {
 					
 				}});
 		} catch (Exception e) {}
+	   
+	  
 	   	
    }
    
@@ -297,13 +301,16 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbClientes.setItems(buscarCliente());
    }
    
+   public void iniciarAlterarDisco() {
+	
+   }
    
    
 
 
 
-public void alterarVinil(ActionEvent event) throws Exception{
-	   
+   public void alterarVinil(ActionEvent event) throws Exception{
+	   Telas.alterarVinil();
    }
    
    public void telaInserirVinil(ActionEvent event) throws Exception {
