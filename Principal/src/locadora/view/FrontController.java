@@ -2,13 +2,23 @@ package locadora.view;
 
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javax.annotation.Resource;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import locadora.Model.BO.ClienteBO;
@@ -29,23 +39,33 @@ import locadora.Model.VO.LocacaoVO;
 import locadora.exception.AutenticationException;
 import locadora.exception.InsertException;
 
-public class FrontController {
+public class FrontController implements Initializable{
 	//VARIAVEIS FXML
+	
+	//Tela Login
 	@FXML private TextField login;
 	@FXML private PasswordField senha;
 	@FXML private Label erroAut;
+	
+	//Tela Cadastro
 	@FXML private TextField cadLogin;
 	@FXML private TextField cadSenha;
+	
+	//Tela Cadastro Cliente
 	@FXML private TextField clienteNome;
 	@FXML private TextField clienteTelefone;
 	@FXML private TextField clienteCPF;
 	@FXML private TextField clienteEnd;
+	
+	//Tela cadastro de vinil
 	@FXML private TextField vinilTitulo;
 	@FXML private TextField vinilBanda;
 	@FXML private TextField vinilEstilo;
 	@FXML private TextField vinilData;
 	@FXML private TextField vinilQuantidade;
 	@FXML private TextField vinilValor;
+	
+	// Tela cadastro de Livro
 	@FXML private TextField livroTitulo;
 	@FXML private TextField livroAutor;
 	@FXML private TextField livroGenero;
@@ -72,7 +92,9 @@ public class FrontController {
 	@FXML private TableColumn <LivroVO,Integer> tbLivroValor;
 	@FXML private TableView <LivroVO> tbLivros;
 	
+	
 	//TABELA DISCOS
+	
 	@FXML private TableColumn <DiscoVO,Integer> tbDiscoCod;
 	@FXML private TableColumn <DiscoVO,String> tbDiscoTitulo;
 	@FXML private TableColumn <DiscoVO,String> tbDiscoBanda;
@@ -82,13 +104,25 @@ public class FrontController {
 	@FXML private TableColumn <DiscoVO,Integer> tbDiscoValor;
 	@FXML private TableView <DiscoVO> tbDiscos;
 	
+	//ALTERAR VINIL
+	@FXML private TextField txtAlteraTitulo;
+    @FXML private TextField txtAlteraBanda;
+    @FXML private TextField txtAlteraGenero;
+    @FXML private TextField txtAlteraData;
+    @FXML private TextField txtAlteraValor;
+    @FXML private TextField txtAlteraQuant;
+	
 	//CHAMADAS
 	UsuarioInterBO<UsuarioVO> usuBO = new UsuarioBO();
 	ClienteInterBO<ClienteVO> cliBO = new ClienteBO();
 	DiscoInterBO<DiscoVO> discoBO = new DiscoBO();
 	LivroInterBO<LivroVO> livroBO = new LivroBO();
 	LocacaoInterBO<LocacaoVO> locaBO = new LocacaoBO();
+	private DiscoVO vo;
 	
+	private LivroVO livroSelecionado;
+	private DiscoVO discoSelecionado;
+	private ClienteVO clienteSelecionado;
 	//TRATAMENTO DE USUARIOS
 	public void autenticar(ActionEvent event) throws Exception {
 		UsuarioVO vo = new UsuarioVO();
@@ -193,6 +227,57 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   DiscoBO bo = new DiscoBO();
 	   tbDiscos.setItems(FXCollections.observableList(bo.listar()));
+	  
+   }
+   
+   @Override
+   public void initialize(URL url, ResourceBundle rb) {
+	   try {
+		iniciarTabelaLivro();
+		tbLivros.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LivroVO>() {
+			@Override
+			public void changed(ObservableValue<? extends LivroVO> observable, LivroVO oldValue, LivroVO newValue) {
+				livroSelecionado = newValue;
+			}});
+	} catch (Exception e) {}
+	   try {
+		iniciarTabelaVinil();
+		tbDiscos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DiscoVO>() {
+
+			@Override
+			public void changed(ObservableValue<? extends DiscoVO> observable, DiscoVO oldValue, DiscoVO newValue) {
+				discoSelecionado = newValue;
+			}});
+	} catch (Exception e) {}
+   	
+	   try {
+			iniciarTabelaCliente();
+			tbClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+				@Override
+				public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+					clienteSelecionado = (ClienteVO)newValue;
+					System.out.println(clienteSelecionado);
+					
+				}});
+		} catch (Exception e) {}
+	   	
+   }
+   
+   public void deletaLivro(ActionEvent event) throws InsertException {
+	   livroBO.remover(livroSelecionado);
+   }
+   
+   public void deletaVinil(ActionEvent event) throws InsertException {
+	   discoBO.remover(discoSelecionado);
+   }
+   
+   public void deletaCliente(ActionEvent event) throws InsertException {
+	   cliBO.remover(clienteSelecionado);
+   }
+   
+   
+   public void alterarVinil(ActionEvent event) throws Exception{
+	   
    }
    
    public void telaInserirVinil(ActionEvent event) throws Exception {
@@ -238,6 +323,8 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   LivroBO bo = new LivroBO();
 	   tbLivros.setItems(FXCollections.observableList(bo.listar()));
+	   
+	   
    }
    
    public void inserirLivro() throws InsertException{
@@ -260,8 +347,16 @@ public void iniciarTabelaCliente() throws InsertException {
 	   livroQuant.setText("");
 	   livroValor.setText("");
 	   livroPaginas.setText("");
-	   
    }
+   
+
+   
+   
+  
+   
+	   
+ 
+   
    //TELA DE LOGIN
    
    public void btnCadastro(ActionEvent event) throws Exception {
@@ -271,5 +366,9 @@ public void iniciarTabelaCliente() throws InsertException {
    public void logout(ActionEvent event) throws Exception{
 	   Telas.telaLogin();
    }
+
+
+
+
    
 }

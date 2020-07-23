@@ -44,4 +44,6 @@ public class LivroVO extends ProdutoVO {
 		saida = saida + "\nAutor: " + autor + "\nPáginas: " + qtdPaginas + "\n";
 		return saida;
 	}
+	
+	
 }
