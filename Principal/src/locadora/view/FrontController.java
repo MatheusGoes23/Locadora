@@ -154,11 +154,11 @@ public class FrontController {
 public void iniciarTabelaCliente() throws InsertException {
 	   tbCpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 	   tbNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-	   tbEndCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-	   tbTelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+	   tbEndCliente.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+	   tbTelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 	   
-	   //ClienteBO bo = new ClienteBO();
-	   //tbClientes.setItems(FXCollections.observableList(bo.listar()));
+	   ClienteBO bo = new ClienteBO();
+	   tbClientes.setItems(FXCollections.observableArrayList(bo.listar()));
    }
    
    // TRATAMENTO DE VINIL
@@ -207,12 +207,20 @@ public void iniciarTabelaCliente() throws InsertException {
 	   Telas.telaInicial();
    }
    
+   public void telaIncluirLivros(ActionEvent event) throws Exception{
+	   Telas.cadastroLivros();
+   }
+   
    public void telaClientes(ActionEvent event) throws Exception {
 	   Telas.telaClientes();
    }
    
    public void telaIncluirClientes(ActionEvent event) throws Exception {
 	   Telas.telaIncluirClientes();
+   }
+   
+   public void telaLocacao(ActionEvent event) throws Exception{
+	   Telas.telaLocacao();
    }
    
   //TRATAMENTO DE LIVROS
