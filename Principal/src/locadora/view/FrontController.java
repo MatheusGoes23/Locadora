@@ -157,8 +157,8 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbEndCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 	   tbTelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 	   
-	   ClienteBO bo = new ClienteBO();
-	   tbClientes.setItems(FXCollections.observableList(bo.listar()));
+	   //ClienteBO bo = new ClienteBO();
+	   //tbClientes.setItems(FXCollections.observableList(bo.listar()));
    }
    
    // TRATAMENTO DE VINIL
