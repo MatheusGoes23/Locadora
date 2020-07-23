@@ -32,7 +32,7 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 
 	public void alterarValor(LivroVO vo) throws InsertException {
 		try {
-			ResultSet rs = dao.buscar(vo);
+			ResultSet rs = dao.buscarByTitle(vo);
 			if (rs.next()) {
 				dao.alterarValor(vo);
 			} else {
@@ -45,7 +45,7 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 
 	public void alterarQuantidade(LivroVO vo) throws InsertException {
 		try {
-			ResultSet rs = dao.buscar(vo);
+			ResultSet rs = dao.buscarByTitle(vo);
 			if (rs.next()) {
 				dao.alterarQuantidade(vo);
 			} else {
@@ -95,4 +95,3 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 	}
 
 }
-
