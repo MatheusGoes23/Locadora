@@ -31,7 +31,7 @@
             <TableColumn fx:id="tbTelefoneCliente" prefWidth="126.0" text="Telefone" />
         </columns>
       </TableView>
-      <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" onAction="#iniciarTabelaCliente" style="-fx-background-color: #FFFFFF;">
+      <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" onAction="#campoPesquisaCliente" style="-fx-background-color: #FFFFFF;">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                <image>

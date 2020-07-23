@@ -2,23 +2,22 @@ package locadora.view;
 
 
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javax.annotation.Resource;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import locadora.Model.BO.ClienteBO;
@@ -75,11 +74,11 @@ public class FrontController implements Initializable{
 	@FXML private TextField livroValor;
 	
 	//TABELA CLIENTE
-	@FXML private TableColumn <ClienteBO,Integer> tbCpfCliente;
-	@FXML private TableColumn <ClienteBO,String> tbNomeCliente;
-	@FXML private TableColumn <ClienteBO,String> tbTelefoneCliente;
-	@FXML private TableColumn <ClienteBO,String> tbEndCliente;
-	@FXML private TableView <ClienteBO> tbClientes;
+	@FXML private TableColumn <ClienteVO,Integer> tbCpfCliente;
+	@FXML private TableColumn <ClienteVO,String> tbNomeCliente;
+	@FXML private TableColumn <ClienteVO,String> tbTelefoneCliente;
+	@FXML private TableColumn <ClienteVO,String> tbEndCliente;
+	@FXML private TableView <ClienteVO> tbClientes;
 	
 	//TABELA LIVROS
 	@FXML private TableColumn <LivroVO,Integer> tbLivroCod;
@@ -91,6 +90,9 @@ public class FrontController implements Initializable{
 	@FXML private TableColumn <LivroVO,Integer> tbLivroPagina;
 	@FXML private TableColumn <LivroVO,Integer> tbLivroValor;
 	@FXML private TableView <LivroVO> tbLivros;
+	
+	@FXML private Button btnPesquisa;
+	@FXML private TextField txtPesquisa;
 	
 	
 	//TABELA DISCOS
@@ -112,17 +114,23 @@ public class FrontController implements Initializable{
     @FXML private TextField txtAlteraValor;
     @FXML private TextField txtAlteraQuant;
 	
+    private LivroVO livroSelecionado;
+	private DiscoVO discoSelecionado;
+	private ClienteVO clienteSelecionado;
+	
+	private ObservableList<LivroVO> livroLista = FXCollections.observableArrayList();
+	private ObservableList<DiscoVO> discoLista = FXCollections.observableArrayList();
+	private ObservableList<ClienteVO> clienteLista = FXCollections.observableArrayList();
+			
+	
 	//CHAMADAS
 	UsuarioInterBO<UsuarioVO> usuBO = new UsuarioBO();
 	ClienteInterBO<ClienteVO> cliBO = new ClienteBO();
 	DiscoInterBO<DiscoVO> discoBO = new DiscoBO();
 	LivroInterBO<LivroVO> livroBO = new LivroBO();
 	LocacaoInterBO<LocacaoVO> locaBO = new LocacaoBO();
-	private DiscoVO vo;
 	
-	private LivroVO livroSelecionado;
-	private DiscoVO discoSelecionado;
-	private ClienteVO clienteSelecionado;
+	
 	//TRATAMENTO DE USUARIOS
 	public void autenticar(ActionEvent event) throws Exception {
 		UsuarioVO vo = new UsuarioVO();
@@ -192,7 +200,9 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbTelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 	   
 	   ClienteBO bo = new ClienteBO();
-	   tbClientes.setItems(FXCollections.observableArrayList(bo.listar()));
+	   clienteLista = FXCollections.observableArrayList(bo.listar());
+	   tbClientes.setItems(clienteLista);
+	   
    }
    
    // TRATAMENTO DE VINIL
@@ -226,7 +236,8 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbDiscoValor.setCellValueFactory(new PropertyValueFactory<>("valorDoAluguel"));
 	   
 	   DiscoBO bo = new DiscoBO();
-	   tbDiscos.setItems(FXCollections.observableList(bo.listar()));
+	   discoLista = FXCollections.observableList(bo.listar());
+	   tbDiscos.setItems(discoLista);
 	  
    }
    
@@ -275,8 +286,23 @@ public void iniciarTabelaCliente() throws InsertException {
 	   cliBO.remover(clienteSelecionado);
    }
    
+   public void campoPesquisaLivro(ActionEvent event)throws Exception{
+	   tbLivros.setItems(buscarLivro());
+   }
    
-   public void alterarVinil(ActionEvent event) throws Exception{
+   public void campoPesquisaDisco(ActionEvent event)throws Exception{
+	   tbDiscos.setItems(buscarDiscos());
+   }
+   public void campoPesquisaCliente(ActionEvent event)throws Exception{
+	   tbClientes.setItems(buscarCliente());
+   }
+   
+   
+   
+
+
+
+public void alterarVinil(ActionEvent event) throws Exception{
 	   
    }
    
@@ -322,7 +348,8 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbLivroValor.setCellValueFactory(new PropertyValueFactory<>("valorDoAluguel"));
 	   
 	   LivroBO bo = new LivroBO();
-	   tbLivros.setItems(FXCollections.observableList(bo.listar()));
+	   livroLista = FXCollections.observableList(bo.listar());
+	   tbLivros.setItems(livroLista);
 	   
 	   
    }
@@ -349,13 +376,37 @@ public void iniciarTabelaCliente() throws InsertException {
 	   livroPaginas.setText("");
    }
    
-
-   
-   
-  
-   
+   public ObservableList<LivroVO> buscarLivro() {
+	   ObservableList<LivroVO> livroPesquisa = FXCollections.observableArrayList();
+	   for(int x = 0 ; x < livroLista.size(); x++) {
+		   if(livroLista.get(x).getTitulo().contains(txtPesquisa.getText())) {
+			   livroPesquisa.add(livroLista.get(x));
+		   }
+	   }
+	return livroPesquisa;
 	   
- 
+   }
+   
+   private ObservableList<DiscoVO> buscarDiscos() {
+	   ObservableList<DiscoVO> discoPesquisa = FXCollections.observableArrayList();
+	   for(int x = 0 ; x < discoLista.size(); x++) {
+		   if(discoLista.get(x).getTitulo().contains(txtPesquisa.getText())) {
+			   discoPesquisa.add(discoLista.get(x));
+		   }
+	   }
+	return discoPesquisa;
+	}
+   
+   private ObservableList<ClienteVO> buscarCliente() {
+	   ObservableList<ClienteVO> clientePesquisa = FXCollections.observableArrayList();
+	   for(int x = 0 ; x < clienteLista.size(); x++) {
+		   if(clienteLista.get(x).getNome().contains(txtPesquisa.getText())) {
+			   clientePesquisa.add(clienteLista.get(x));
+		   }
+	   }
+	return clientePesquisa;
+	}
+
    
    //TELA DE LOGIN
    
