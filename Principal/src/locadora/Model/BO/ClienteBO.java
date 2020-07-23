@@ -6,11 +6,10 @@ import java.util.List;
 
 import locadora.Model.DAO.ClienteDAO;
 import locadora.Model.VO.ClienteVO;
-<<<<<<< HEAD
-=======
+
 import locadora.Model.VO.LocacaoVO;
 import locadora.Model.VO.UsuarioVO;
->>>>>>> 95daf41baa49d78f11c633fd0a9f91b8d1ee9e2e
+
 import locadora.exception.InsertException;
 
 public class ClienteBO implements ClienteInterBO<ClienteVO> {

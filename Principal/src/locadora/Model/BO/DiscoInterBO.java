@@ -11,5 +11,7 @@ public interface DiscoInterBO<VO extends DiscoVO> extends ConectarBDinterBO<VO> 
 
 	public List<DiscoVO> pesquisar(DiscoVO vo) throws InsertException;
 	
+	public List<DiscoVO> listar();
+	
 	public void alterarQuantidade(VO vo) throws InsertException;
 }
