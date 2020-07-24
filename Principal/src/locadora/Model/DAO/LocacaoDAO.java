@@ -86,9 +86,23 @@ public class LocacaoDAO<VO extends LocacaoVO> extends ConectarBD<VO> implements 
 		return resultado;
 	}
 
-	public void imprimirFaturamentoMes() {
-		// Lista dos itens alugados num determinado mês com os valores somados
-		// toDo
+	//Busca os valores pagos, e retorna a soma dos valores pagos por mês
+	
+	public double faturamentoMes() {
+		String sql = "SELECT * FROM locacao;";
+		Statement st;
+		ResultSet resultado = null;
+		double faturamento = 0;
+		try {
+			st = getConnection().createStatement();
+			resultado = st.executeQuery(sql);
+			while(resultado.next()) {
+				faturamento += resultado.getDouble("valorPago");
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return faturamento;
 	}
 
 	public void imprimirLocacaoData() {
