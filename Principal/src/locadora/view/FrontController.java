@@ -232,6 +232,7 @@ public class FrontController implements Initializable{
 		UsuarioVO vo = new UsuarioVO();
 		vo.setLogin(login.getText());
 		vo.setSenha(senha.getText());
+		vo.setPerfil(2);
 		
 		
 			try {
