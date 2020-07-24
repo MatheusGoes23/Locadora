@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="751.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="751.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,17 +27,17 @@
             <Image url="@VE/barraDeOpções.png" />
          </image>
       </ImageView>
-      <Button fx:id="produtos" layoutX="22.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="produtos" layoutX="10.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
       <TableView fx:id="tbLivros" layoutX="22.0" layoutY="204.0" prefHeight="162.0" prefWidth="707.0">
         <columns>
-          <TableColumn fx:id="tbLivroCod" prefWidth="48.0" text="Codigo" />
+          <TableColumn fx:id="tbLivroCod" prefWidth="48.0" text="Cod" />
           <TableColumn fx:id="tbLivroTitulo" prefWidth="137.0" text="Titulo" />
             <TableColumn fx:id="tbLivroAutor" prefWidth="116.0" text="Autor" />
             <TableColumn fx:id="tbLivroGenero" prefWidth="103.0" text="Genero" />
-            <TableColumn fx:id="tbLivroLanc" prefWidth="91.0" text="Lançamento" />
-            <TableColumn fx:id="tbLivroPagina" prefWidth="57.0" text="Paginas" />
-            <TableColumn fx:id="tbLivroQuant" prefWidth="73.0" text="Quantidade" />
-            <TableColumn fx:id="tbLivroValor" prefWidth="81.0" text="Valor" />
+            <TableColumn fx:id="tbLivroLanc" prefWidth="102.0" text="Lançamento" />
+            <TableColumn fx:id="tbLivroPagina" prefWidth="46.0" text="Pag" />
+            <TableColumn fx:id="tbLivroQuant" prefWidth="47.0" text="Qtd" />
+            <TableColumn fx:id="tbLivroValor" prefWidth="107.0" text="Valor" />
         </columns>
       </TableView>
       <Button fx:id="btnBusca" layoutX="174.0" layoutY="161.0" mnemonicParsing="false" onAction="#campoPesquisaLivro" style="-fx-background-color: #FFFFFF;">
@@ -45,13 +50,13 @@
          </graphic>
       </Button>
       <TextField fx:id="txtPesquisa" layoutX="25.0" layoutY="166.0" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 20;" />
-      <Button fx:id="clientes" layoutX="100.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaClientes" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Clientes" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="locacao" layoutX="196.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaLocacao" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="relatorios" layoutX="297.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="ajuda" layoutX="391.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="btnIncluirLivro" layoutX="624.0" layoutY="395.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="87.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
-      <Button layoutX="412.0" layoutY="429.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #563981;" text="Alterar" textFill="WHITE" />
-      <Button layoutX="500.0" layoutY="430.0" mnemonicParsing="false" onAction="#deletaLivro" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #563981;" text="Excluir" textFill="WHITE" />
+      <Button fx:id="clientes" layoutX="100.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaClientes" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Clientes" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="locacao" layoutX="183.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaLocacao" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="relatorios" layoutX="273.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="ajuda" layoutX="377.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="btnIncluirLivro" layoutX="642.0" layoutY="387.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="87.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
+      <Button layoutX="435.0" layoutY="445.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #563981;" text="Alterar" textFill="WHITE" />
+      <Button layoutX="552.0" layoutY="445.0" mnemonicParsing="false" onAction="#deletaLivro" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #563981;" text="Excluir" textFill="WHITE" />
       <Button layoutX="30.0" layoutY="129.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #563981;" text="Livros" textFill="WHITE" />
       <Button layoutX="104.0" layoutY="129.0" mnemonicParsing="false" onAction="#telaInicialVinil" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #563981;" text="Vinis" textFill="WHITE" />
       <Label layoutX="329.0" layoutY="145.0" text="Livros">
@@ -69,19 +74,19 @@
          </graphic>
       </Button>
       <Label fx:id="lbAlteraTitulo" layoutX="446.0" layoutY="378.0" />
-      <TextField fx:id="txtTitulo" editable="false" layoutX="30.0" layoutY="386.0" promptText="Titulo..." />
-      <TextField fx:id="txtGenero" editable="false" layoutX="351.0" layoutY="386.0" promptText="Genero" />
-      <TextField fx:id="txtLancamento" editable="false" layoutX="30.0" layoutY="431.0" promptText="Lançamento" />
-      <TextField fx:id="txtPagina" editable="false" layoutX="191.0" layoutY="431.0" prefHeight="25.0" prefWidth="61.0" promptText="Paginas" />
-      <TextField fx:id="txtQuant" layoutX="260.0" layoutY="431.0" prefHeight="25.0" prefWidth="61.0" promptText="Quant" />
-      <TextField fx:id="txtValor" layoutX="329.0" layoutY="431.0" prefHeight="25.0" prefWidth="61.0" promptText="Valor" />
-      <Label layoutX="30.0" layoutY="370.0" text="Titulo" />
-      <Label layoutX="191.0" layoutY="370.0" text="Autor" />
-      <Label layoutX="352.0" layoutY="370.0" text="Genero" />
-      <Label layoutX="30.0" layoutY="412.0" text="Lançamento" />
-      <Label layoutX="191.0" layoutY="412.0" text="Paginas" />
-      <Label layoutX="260.0" layoutY="412.0" text="Quant" />
-      <Label layoutX="329.0" layoutY="412.0" text="Valor" />
-      <TextField fx:id="txtAutor" editable="false" layoutX="191.0" layoutY="386.0" promptText="Autor" />
+      <TextField fx:id="txtTitulo" editable="false" layoutX="23.0" layoutY="389.0" promptText="Titulo..." />
+      <TextField fx:id="txtGenero" editable="false" layoutX="435.0" layoutY="389.0" promptText="Genero" />
+      <TextField fx:id="txtLancamento" editable="false" layoutX="23.0" layoutY="445.0" prefHeight="31.0" prefWidth="143.0" promptText="Lançamento" />
+      <TextField fx:id="txtPagina" editable="false" layoutX="181.0" layoutY="445.0" prefHeight="25.0" prefWidth="61.0" promptText="Paginas" />
+      <TextField fx:id="txtQuant" layoutX="258.0" layoutY="445.0" prefHeight="25.0" prefWidth="61.0" promptText="Quant" />
+      <TextField fx:id="txtValor" layoutX="333.0" layoutY="445.0" prefHeight="31.0" prefWidth="81.0" promptText="Valor" />
+      <Label layoutX="27.0" layoutY="368.0" text="Titulo" />
+      <Label layoutX="233.0" layoutY="368.0" text="Autor" />
+      <Label layoutX="441.0" layoutY="368.0" text="Genero" />
+      <Label layoutX="28.0" layoutY="424.0" text="Lançamento" />
+      <Label layoutX="187.0" layoutY="424.0" text="Paginas" />
+      <Label layoutX="264.0" layoutY="424.0" text="Quant" />
+      <Label layoutX="338.0" layoutY="424.0" text="Valor" />
+      <TextField fx:id="txtAutor" editable="false" layoutX="228.0" layoutY="389.0" promptText="Autor" />
    </children>
 </Pane>
