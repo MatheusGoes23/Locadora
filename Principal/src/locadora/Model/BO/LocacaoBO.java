@@ -44,4 +44,9 @@ public class LocacaoBO implements LocacaoInterBO<LocacaoVO> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public double faturamentoMes() {
+		double faturamento = dao.faturamentoMes();
+		return faturamento;
+	}
 }

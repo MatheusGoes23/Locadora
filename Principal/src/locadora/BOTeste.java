@@ -173,7 +173,9 @@ public class BOTeste {
 		loc.setValorPago(7.5);
 		loc.setPago(false);
 
-		// try {
+		 double faturamento = locbo.faturamentoMes();
+		 System.out.println(faturamento);
+// try {
 		// locbo.inserir(loc);
 		// locbo.remover(loc);
 
