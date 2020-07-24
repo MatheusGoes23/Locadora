@@ -81,13 +81,17 @@ public class ClienteDAO<VO extends ClienteVO> extends ConectarBD<VO> implements 
 	 * IdCliente informado
 	 */
 	public void alterar(VO cliente) {
-		String sql = "UPDATE cliente SET nome=? WHERE idCliente=?";
+		String sql = "UPDATE cliente SET nome=? , cpf=? , endereco=? , telefone=? WHERE idCliente=?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, cliente.getNome());
-			ptst.setLong(2, cliente.getIdCliente());
+			ptst.setString(2, cliente.getCpf());
+			ptst.setString(3, cliente.getEndereco());
+			ptst.setString(4, cliente.getTelefone());
+			ptst.setLong(5, cliente.getIdCliente());
 			ptst.executeUpdate();
+			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

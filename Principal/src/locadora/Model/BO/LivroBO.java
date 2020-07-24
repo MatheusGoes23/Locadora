@@ -7,9 +7,6 @@ import java.util.List;
 import locadora.Model.DAO.LivroDAO;
 import locadora.Model.VO.LivroVO;
 
-import locadora.Model.VO.ProdutoVO;
-import locadora.Model.VO.UsuarioVO;
-
 import locadora.exception.InsertException;
 
 public class LivroBO implements LivroInterBO<LivroVO> {
@@ -36,7 +33,7 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 			if (rs.next()) {
 				dao.alterarValor(vo);
 			} else {
-				throw new InsertException("Impossível alterar, pois não existe um livro com esse Id");
+				throw new InsertException("Impossível alterar, pois não existe um livro com esse Titulo");
 			}
 		} catch (SQLException e) {
 			throw new InsertException(e.getMessage());
@@ -49,7 +46,7 @@ public class LivroBO implements LivroInterBO<LivroVO> {
 			if (rs.next()) {
 				dao.alterarQuantidade(vo);
 			} else {
-				throw new InsertException("Impossível alterar, pois não existe um livro com esse Id");
+				throw new InsertException("Impossível alterar, pois não existe um livro com esse Titulo");
 			}
 		} catch (SQLException e) {
 			throw new InsertException(e.getMessage());

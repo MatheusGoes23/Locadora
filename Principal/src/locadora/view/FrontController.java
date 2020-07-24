@@ -72,6 +72,7 @@ public class FrontController implements Initializable{
 	@FXML private TextField livroPaginas;
 	@FXML private TextField livroQuant;
 	@FXML private TextField livroValor;
+	@FXML private Button btnIncluirLivro;
 	
 	//TABELA CLIENTE
 	@FXML private TableColumn <ClienteVO,Integer> tbCpfCliente;
@@ -79,6 +80,12 @@ public class FrontController implements Initializable{
 	@FXML private TableColumn <ClienteVO,String> tbTelefoneCliente;
 	@FXML private TableColumn <ClienteVO,String> tbEndCliente;
 	@FXML private TableView <ClienteVO> tbClientes;
+	
+	@FXML private TextField txtCPF;
+	@FXML private TextField txtEndereco;
+	@FXML private TextField txtTelefone;
+	@FXML private TextField txtNome;
+	    
 	
 	//TABELA LIVROS
 	@FXML private TableColumn <LivroVO,Integer> tbLivroCod;
@@ -94,6 +101,13 @@ public class FrontController implements Initializable{
 	@FXML private Button btnPesquisa;
 	@FXML private TextField txtPesquisa;
 	
+	@FXML private TextField txtTitulo;
+    @FXML private TextField txtAutor;
+    @FXML private TextField txtGenero;
+    @FXML private TextField txtLancamento;
+    @FXML private TextField txtPagina;
+    @FXML private TextField txtQuant;
+    @FXML private TextField txtValor;
 	
 	//TABELA DISCOS
 	
@@ -106,18 +120,11 @@ public class FrontController implements Initializable{
 	@FXML private TableColumn <DiscoVO,Integer> tbDiscoValor;
 	@FXML private TableView <DiscoVO> tbDiscos;
 	
-	//ALTERAR VINIL
-	@FXML private Label idAlterarVinil;
-	@FXML private TextField txtAlteraTitulo;
-    @FXML private TextField txtAlteraBanda;
-    @FXML private TextField txtAlteraGenero;
-    @FXML private TextField txtAlteraData;
-    @FXML private TextField txtAlteraValor;
-    @FXML private TextField txtAlteraQuant;
 	
-    private LivroVO livroSelecionado;
-	private DiscoVO discoSelecionado;
-	private ClienteVO clienteSelecionado;
+	
+    public static LivroVO livroSelecionado;
+	private static DiscoVO discoSelecionado;
+	private static ClienteVO clienteSelecionado;
 	
 	private ObservableList<LivroVO> livroLista = FXCollections.observableArrayList();
 	private ObservableList<DiscoVO> discoLista = FXCollections.observableArrayList();
@@ -125,15 +132,73 @@ public class FrontController implements Initializable{
 	
 
 	
-	//CHAMADAS
+	//-------------CHAMADAS----------------
 	UsuarioInterBO<UsuarioVO> usuBO = new UsuarioBO();
 	ClienteInterBO<ClienteVO> cliBO = new ClienteBO();
 	DiscoInterBO<DiscoVO> discoBO = new DiscoBO();
 	LivroInterBO<LivroVO> livroBO = new LivroBO();
 	LocacaoInterBO<LocacaoVO> locaBO = new LocacaoBO();
+	//-------------------------------------
 	
+	//------------INITIALIZE PRAS TABELAS------------------
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		   try {
+			iniciarTabelaLivro();
+			tbLivros.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LivroVO>() {
+				@Override
+				public void changed(ObservableValue<? extends LivroVO> observable, LivroVO oldValue, LivroVO newValue) {
+					livroSelecionado = newValue;
+					
+					txtTitulo.setText(livroSelecionado.getTitulo());
+					txtAutor.setText(livroSelecionado.getAutor());
+					txtGenero.setText(livroSelecionado.getGenero());
+					txtLancamento.setText(String.valueOf(livroSelecionado.getAnoDeLancamento()));
+					txtPagina.setText(String.valueOf(livroSelecionado.getQtdPaginas()));
+					txtQuant.setText(String.valueOf(livroSelecionado.getQtdExemplares()));
+					txtValor.setText(String.valueOf(livroSelecionado.getValorDoAluguel()));
+					
+					
+					
+				}});
+		} catch (Exception e) {}
+		   
+		   try {
+			iniciarTabelaVinil();
+			tbDiscos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DiscoVO>() {
+
+				@Override
+				public void changed(ObservableValue<? extends DiscoVO> observable, DiscoVO oldValue, DiscoVO newValue) {
+					discoSelecionado = newValue;
+					txtTitulo.setText(discoSelecionado.getTitulo());
+					txtAutor.setText(discoSelecionado.getNomeDaBanda());
+					txtGenero.setText(discoSelecionado.getGenero());
+					txtLancamento.setText(String.valueOf(discoSelecionado.getAnoDeLancamento()));
+					txtQuant.setText(String.valueOf(discoSelecionado.getQtdExemplares()));
+					txtValor.setText(String.valueOf(discoSelecionado.getValorDoAluguel()));
+					
+				}});
+			
+		} catch (Exception e) {}
+	   	
+		   try {
+				iniciarTabelaCliente();
+				tbClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+					@Override
+					public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+						clienteSelecionado = (ClienteVO)newValue;
+						txtCPF.setText(clienteSelecionado.getCpf());
+					    txtNome.setText(clienteSelecionado.getNome());
+					    txtEndereco.setText(clienteSelecionado.getEndereco());
+					    txtTelefone.setText(clienteSelecionado.getTelefone());
+						
+					}});
+			} catch (Exception e) {}
+		     	
+	}
+//-------------------------------------------------------------------
 	
-	//TRATAMENTO DE USUARIOS
+	//----------------TRATAMENTO DE USUARIOS---------------------
 	public void autenticar(ActionEvent event) throws Exception {
 		UsuarioVO vo = new UsuarioVO();
 		vo.setLogin(login.getText());
@@ -169,8 +234,9 @@ public class FrontController implements Initializable{
 		e.printStackTrace();
 	}
    }
+ //-----------------------------------------------------------
    
-   //TRATAMENTO DE CLIENTE
+   //--------------TRATAMENTO DE CLIENTE------------------------
    public void inserirCliente() {
 	   ClienteVO vo = new ClienteVO();
 	   vo.setNome(clienteNome.getText());
@@ -193,8 +259,24 @@ public class FrontController implements Initializable{
 	   
    }
    
-   //tabela
+   public void alterarCliente() throws InsertException{
+	   ClienteVO vo = new ClienteVO();
+	   vo.setIdCliente(clienteSelecionado.getIdCliente());
+	   vo.setCpf(txtCPF.getText());
+	   vo.setNome(txtNome.getText());
+	   vo.setEndereco(txtEndereco.getText());
+	   vo.setTelefone(txtTelefone.getText());
+	   
+		  if(vo != clienteSelecionado){
+			  cliBO.alterar(vo);
+		  }
+		  
+		
+   }  
    
+   
+   
+   //TABELA
 public void iniciarTabelaCliente() throws InsertException {
 	   tbCpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 	   tbNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -206,8 +288,10 @@ public void iniciarTabelaCliente() throws InsertException {
 	   tbClientes.setItems(clienteLista);
 	   
    }
+
+//--------------------------------------------------------------
    
-   // TRATAMENTO DE VINIL
+   //-------------------TRATAMENTO DE VINIL----------------------
    public void inserirVinil() throws InsertException {
 	   DiscoVO vo = new DiscoVO();
 	   vo.setTitulo(vinilTitulo.getText());
@@ -218,7 +302,8 @@ public void iniciarTabelaCliente() throws InsertException {
 	   vo.setValorDoAlulguel(Double.parseDouble(vinilValor.getText()));
 	   
 	   discoBO.inserir(vo);
-	   vinilTitulo.setText("");
+	   
+	   vinilTitulo.setText("aaaa");
 	   vinilBanda.setText("");
 	   vinilEstilo.setText("");
 	   vinilData.setText("");
@@ -243,41 +328,28 @@ public void iniciarTabelaCliente() throws InsertException {
 	  
    }
    
-   @Override
-   public void initialize(URL url, ResourceBundle rb) {
-	   try {
-		iniciarTabelaLivro();
-		tbLivros.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LivroVO>() {
-			@Override
-			public void changed(ObservableValue<? extends LivroVO> observable, LivroVO oldValue, LivroVO newValue) {
-				livroSelecionado = newValue;
-			}});
-	} catch (Exception e) {}
-	   try {
-		iniciarTabelaVinil();
-		tbDiscos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DiscoVO>() {
-
-			@Override
-			public void changed(ObservableValue<? extends DiscoVO> observable, DiscoVO oldValue, DiscoVO newValue) {
-				discoSelecionado = newValue;
-			}});
-	} catch (Exception e) {}
-   	
-	   try {
-			iniciarTabelaCliente();
-			tbClientes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
-				@Override
-				public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
-					clienteSelecionado = (ClienteVO)newValue;
-					System.out.println(clienteSelecionado);
-					
-				}});
-		} catch (Exception e) {}
-	   
-	  
-	   	
-   }
    
+   
+   // ALTERAR VINIL
+   public void alterarVinil() throws InsertException{
+	   DiscoVO vo = new DiscoVO();
+	   vo.setIdProduto(discoSelecionado.getIdProduto());
+	   vo.setQtdExemplares(Integer.parseInt(txtQuant.getText()));
+	   vo.setValorDoAlulguel(Double.parseDouble(txtValor.getText()));
+	   
+	   
+	   
+		  if(Integer.parseInt(txtQuant.getText()) != discoSelecionado.getQtdExemplares()){
+			  discoBO.alterarQuantidade(vo);
+		  }
+		  if(txtValor.getText() != String.valueOf(discoSelecionado.getValorDoAluguel())) {
+			  discoBO.alterarValor(vo);
+		  }
+		
+   }  
+   //---------------------------------------------------------------------
+   
+   //------------------DELEÇÕES----------------------------------
    public void deletaLivro(ActionEvent event) throws InsertException {
 	   livroBO.remover(livroSelecionado);
    }
@@ -289,7 +361,10 @@ public void iniciarTabelaCliente() throws InsertException {
    public void deletaCliente(ActionEvent event) throws InsertException {
 	   cliBO.remover(clienteSelecionado);
    }
+   //--------------------------------------------------------------
    
+   
+   //-----------------------BUSCAS----------------------------------
    public void campoPesquisaLivro(ActionEvent event)throws Exception{
 	   tbLivros.setItems(buscarLivro());
    }
@@ -300,17 +375,16 @@ public void iniciarTabelaCliente() throws InsertException {
    public void campoPesquisaCliente(ActionEvent event)throws Exception{
 	   tbClientes.setItems(buscarCliente());
    }
+   //--------------------------------------------------------------
+
    
-   public void iniciarAlterarDisco() {
-	
+   //---------------------PAGINAÇÃO------------------------------
+   public void btnCadastro(ActionEvent event) throws Exception {
+	   Telas.telaCadastro();
    }
    
-   
-
-
-
-   public void alterarVinil(ActionEvent event) throws Exception{
-	   Telas.alterarVinil();
+   public void logout(ActionEvent event) throws Exception{
+	   Telas.telaLogin();
    }
    
    public void telaInserirVinil(ActionEvent event) throws Exception {
@@ -329,10 +403,6 @@ public void iniciarTabelaCliente() throws InsertException {
 	   Telas.cadastroLivros();
    }
    
-   public void telaAlterarLivros(ActionEvent event) throws Exception{
-	   Telas.alterarLivros();
-   }
-   
    public void telaClientes(ActionEvent event) throws Exception {
 	   Telas.telaClientes();
    }
@@ -345,7 +415,10 @@ public void iniciarTabelaCliente() throws InsertException {
 	   Telas.telaLocacao();
    }
    
-  //TRATAMENTO DE LIVROS
+   //-------------------------------------------------------------------
+   
+   
+  //--------------------TRATAMENTO DE LIVROS---------------------------
    
    public void iniciarTabelaLivro() throws Exception {
 	   
@@ -364,7 +437,7 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   
    }
-   
+  
    public void inserirLivro() throws InsertException{
 	   LivroVO vo = new LivroVO();
 	   
@@ -378,35 +451,31 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   livroBO.inserir(vo);
 	   
-	   livroTitulo.setText("");
-	   livroAutor.setText("");
-	   livroGenero.setText("");
-	   livroLancamento.setText("");
-	   livroQuant.setText("");
-	   livroValor.setText("");
-	   livroPaginas.setText("");
+	   
+	   
    }
    
    public void alterarLivro() throws InsertException{
-	   LivroVO alt = new LivroVO();
+	   LivroVO vo = new LivroVO();
+	   vo.setTitulo(txtTitulo.getText());
+	   vo.setQtdExemplares(Integer.parseInt(txtQuant.getText()));
+	   vo.setValorDoAlulguel(Double.parseDouble(txtValor.getText()));
 	   
-	   alt.setAutor(livroAutor.getText());
-	   alt.setTitulo(livroTitulo.getText());
-	   alt.setGenero(livroGenero.getText());
-	   alt.setAnoDeLancamento(Integer.parseInt(livroLancamento.getText()));
-	   alt.setQtdExemplares(Integer.parseInt(livroQuant.getText()));
-	   alt.setValorDoAlulguel(Double.parseDouble(livroValor.getText()));
 	   
-	   livroBO.alterarQuantidade(alt);
-	   livroBO.alterarValor(alt);
 	   
-	   livroTitulo.setText("");
-	   livroAutor.setText("");
-	   livroGenero.setText("");
-	   livroLancamento.setText("");
-	   livroQuant.setText("");
-	   livroValor.setText("");
-   }
+		  if(Integer.parseInt(txtQuant.getText()) != livroSelecionado.getQtdExemplares()){
+			  	livroBO.alterarQuantidade(vo);
+		  }
+		  if(txtValor.getText() != String.valueOf(livroSelecionado.getValorDoAluguel())) {
+			  livroBO.alterarValor(vo);
+		  }
+		
+   }  
+   
+ //-------------------------------------------------------------------------
+   
+  
+  //----------FUNÇÕES DE PESQUISA--------------------
    
    public ObservableList<LivroVO> buscarLivro() {
 	   ObservableList<LivroVO> livroPesquisa = FXCollections.observableArrayList();
@@ -438,20 +507,6 @@ public void iniciarTabelaCliente() throws InsertException {
 	   }
 	return clientePesquisa;
 	}
-
    
-   //TELA DE LOGIN
-   
-   public void btnCadastro(ActionEvent event) throws Exception {
-	   Telas.telaCadastro();
-   }
-   
-   public void logout(ActionEvent event) throws Exception{
-	   Telas.telaLogin();
-   }
-
-
-
-
-   
+  //------------------------------------------------------------
 }

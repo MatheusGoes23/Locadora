@@ -2,7 +2,6 @@ package locadora.Model.BO;
 
 import java.util.List;
 
-import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
 import locadora.exception.InsertException;
 
