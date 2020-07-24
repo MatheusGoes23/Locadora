@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -35,6 +36,7 @@ import locadora.Model.VO.UsuarioVO;
 import locadora.Model.VO.DiscoVO;
 import locadora.Model.VO.LivroVO;
 import locadora.Model.VO.LocacaoVO;
+import locadora.Model.VO.ProdutoVO;
 import locadora.exception.AutenticationException;
 import locadora.exception.InsertException;
 
@@ -126,6 +128,13 @@ public class FrontController implements Initializable{
 	private static DiscoVO discoSelecionado;
 	private static ClienteVO clienteSelecionado;
 	
+	
+	
+	
+	//TELA LOCAÇÃO
+	 @FXML private ComboBox<ClienteVO> cbbClientes;
+	 @FXML private ComboBox<ProdutoVO> cbbProdutos;
+	
 	private ObservableList<LivroVO> livroLista = FXCollections.observableArrayList();
 	private ObservableList<DiscoVO> discoLista = FXCollections.observableArrayList();
 	private ObservableList<ClienteVO> clienteLista = FXCollections.observableArrayList();
@@ -194,8 +203,28 @@ public class FrontController implements Initializable{
 						
 					}});
 			} catch (Exception e) {}
+		   
+		  
+		   
+			try {
+				clienteComboBox();
+			} catch (Exception e) {}
+		
+		   
 		     	
 	}
+	
+	public void clienteComboBox() throws Exception{
+		ClienteBO bo = new ClienteBO();
+		clienteLista = FXCollections.observableArrayList(bo.listar());
+		cbbClientes.setItems(clienteLista);
+	}
+	
+	
+	
+	
+	
+	
 //-------------------------------------------------------------------
 	
 	//----------------TRATAMENTO DE USUARIOS---------------------

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#clienteComboBox" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,9 +37,9 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <ComboBox layoutX="121.0" layoutY="170.0" prefHeight="25.0" prefWidth="235.0" promptText="Clientes..." />
+      <ComboBox fx:id="cbbClientes" focusTraversable="false" layoutX="121.0" layoutY="170.0" prefHeight="25.0" prefWidth="235.0" />
       <DatePicker layoutX="426.0" layoutY="170.0" prefHeight="25.0" prefWidth="202.0" promptText="dd/mm/aa" />
-      <ComboBox layoutX="121.0" layoutY="216.0" prefHeight="25.0" prefWidth="235.0" promptText="Produtos..." />
+      <ComboBox fx:id="cbbProdutos" layoutX="121.0" layoutY="216.0" prefHeight="25.0" prefWidth="235.0" promptText="Produtos..." />
       <TextField fx:id="txtPesquisa14" layoutX="426.0" layoutY="264.0" prefHeight="27.0" prefWidth="202.0" promptText="Valor" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
       <TableView layoutX="121.0" layoutY="256.0" prefHeight="200.0" prefWidth="301.0">
         <columns>
@@ -51,5 +51,6 @@
       <TextField fx:id="txtPesquisa141" layoutX="426.0" layoutY="299.0" prefHeight="27.0" prefWidth="202.0" promptText="Desconto" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
       <TextField fx:id="txtPesquisa1411" layoutX="426.0" layoutY="336.0" prefHeight="27.0" prefWidth="202.0" promptText="Multa" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
       <TextField fx:id="txtPesquisa14111" layoutX="426.0" layoutY="373.0" prefHeight="27.0" prefWidth="202.0" promptText="Valor total" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <Label layoutX="121.0" layoutY="149.0" text="Clientes" />
    </children>
 </Pane>

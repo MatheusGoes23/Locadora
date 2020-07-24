@@ -93,7 +93,6 @@ public class ClienteVO extends ClienteBO {
 	// Métodos Especiais - toString
 	@Override
 	public String toString() {
-		return "Cliente{\n" + "Nome: " + nome + "\nEndereço: " + endereco + "\nTelefone: " + telefone + "\nCPF: " + cpf
-				+ "\n" + '}';
+		return idCliente + " - " + nome;
 	}
 }
