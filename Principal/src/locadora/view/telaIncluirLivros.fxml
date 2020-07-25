@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="749.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="locadora.view.FrontController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,12 +25,12 @@
             <Image url="@VE/barraDeOpções.png" />
          </image>
       </ImageView>
-      <Button fx:id="produtos" layoutX="22.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaInicialLivros" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="produtos" layoutX="10.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaInicialLivros" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Produtos" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="pesquisar" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" />
-      <Button fx:id="clientes" layoutX="100.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Clientes" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="locacao" layoutX="196.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaLocacao" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="relatorios" layoutX="297.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
-      <Button fx:id="ajuda" layoutX="391.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="clientes" layoutX="100.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Clientes" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="locacao" layoutX="189.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#telaLocacao" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Locação" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="relatorios" layoutX="278.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="87.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Relatorios" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="ajuda" layoutX="373.0" layoutY="93.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #311B51; -fx-border-radius: 0;" text="Ajuda" textAlignment="CENTER" textFill="WHITE" />
       <Button layoutX="231.0" layoutY="395.0" mnemonicParsing="false" onAction="#inserirLivro" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Incluir" textFill="WHITE" />
       <Button layoutX="444.0" layoutY="395.0" mnemonicParsing="false" onAction="#telaInicialLivros" prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #563981;" text="Cancelar" textFill="WHITE" />
       <Label layoutX="296.0" layoutY="133.0" text="Incluir Livros" textAlignment="CENTER">
@@ -33,19 +38,19 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="livroTitulo" layoutX="114.0" layoutY="222.0" prefHeight="27.0" prefWidth="274.0" promptText="Ex: Narnia" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="livroAutor" layoutX="407.0" layoutY="222.0" prefHeight="27.0" prefWidth="248.0" promptText="Ex: C.S Lewis" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="livroGenero" layoutX="114.0" layoutY="279.0" prefHeight="27.0" prefWidth="180.0" promptText="Ex: Aventura" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="livroLancamento" layoutX="309.0" layoutY="279.0" prefHeight="27.0" prefWidth="160.0" promptText="Ex: 1990" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="livroPaginas" layoutX="475.0" layoutY="278.0" prefHeight="27.0" prefWidth="57.0" promptText="Ex: 500" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <TextField fx:id="livroValor" layoutX="596.0" layoutY="278.0" prefHeight="27.0" prefWidth="57.0" promptText="R$" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <Label layoutX="114.0" layoutY="205.0" prefHeight="17.0" prefWidth="50.0" text="Titulo" />
-      <Label layoutX="410.0" layoutY="205.0" prefHeight="17.0" prefWidth="34.0" text="Autor" />
-      <Label layoutX="117.0" layoutY="261.0" prefHeight="17.0" prefWidth="50.0" text="Gênero" />
-      <Label layoutX="309.0" layoutY="262.0" prefHeight="17.0" prefWidth="115.0" text="Data de Lançamento" />
-      <Label layoutX="475.0" layoutY="259.0" prefHeight="17.0" prefWidth="43.0" text="Paginas" />
-      <Label layoutX="596.0" layoutY="261.0" prefHeight="17.0" prefWidth="34.0" text="Valor" />
-      <TextField fx:id="livroQuant" layoutX="536.0" layoutY="277.0" prefHeight="27.0" prefWidth="57.0" promptText=" Ex: 3" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
-      <Label layoutX="536.0" layoutY="260.0" prefHeight="17.0" prefWidth="34.0" text="Quant" />
+      <TextField fx:id="livroTitulo" layoutX="61.0" layoutY="193.0" prefHeight="33.0" prefWidth="614.0" promptText="Ex: Narnia" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="livroAutor" layoutX="60.0" layoutY="257.0" prefHeight="33.0" prefWidth="442.0" promptText="Ex: C.S Lewis" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="livroGenero" layoutX="60.0" layoutY="321.0" prefHeight="33.0" prefWidth="254.0" promptText="Ex: Aventura" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="livroLancamento" layoutX="342.0" layoutY="321.0" prefHeight="27.0" prefWidth="160.0" promptText="Ex: 1990" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="livroPaginas" layoutX="530.0" layoutY="321.0" prefHeight="27.0" prefWidth="57.0" promptText="Ex: 500" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <TextField fx:id="livroValor" layoutX="530.0" layoutY="260.0" prefHeight="33.0" prefWidth="145.0" promptText="R$" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <Label layoutX="61.0" layoutY="172.0" prefHeight="17.0" prefWidth="50.0" text="Titulo" />
+      <Label layoutX="63.0" layoutY="236.0" prefHeight="21.0" prefWidth="50.0" text="Autor" />
+      <Label layoutX="63.0" layoutY="300.0" prefHeight="17.0" prefWidth="50.0" text="Gênero" />
+      <Label layoutX="343.0" layoutY="300.0" prefHeight="21.0" prefWidth="145.0" text="Data de Lançamento" />
+      <Label layoutX="530.0" layoutY="300.0" prefHeight="21.0" prefWidth="57.0" text="Paginas" />
+      <Label layoutX="530.0" layoutY="239.0" prefHeight="21.0" prefWidth="57.0" text="Valor" />
+      <TextField fx:id="livroQuant" layoutX="618.0" layoutY="321.0" prefHeight="27.0" prefWidth="57.0" promptText=" Ex: 3" style="-fx-background-radius: 20; -fx-border-color: #000000; -fx-border-radius: 10;" />
+      <Label layoutX="618.0" layoutY="300.0" prefHeight="21.0" prefWidth="57.0" text="Quant" />
    </children>
 </Pane>
