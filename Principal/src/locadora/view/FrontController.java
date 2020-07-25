@@ -247,21 +247,35 @@ public class FrontController implements Initializable{
 	
   
    
-   public void inserirUsuario() throws InsertException {
-	   UsuarioVO vo = new UsuarioVO();
-	   vo.setLogin(cadLogin.getText());
-	   vo.setSenha(cadSenha.getText());
-       vo.setPerfil(2);
-	   
-	   usuBO.inserir(vo);
-	   
-	   try {
-		Telas.telaLogin();
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public void inserirUsuario() throws InsertException {
+		   UsuarioVO vo = new UsuarioVO();
+		   vo.setLogin(cadLogin.getText());
+		   vo.setSenha(cadSenha.getText());
+	       vo.setPerfil(2);
+		   
+	       if(cadLogin.getText().isEmpty() && cadSenha.getText().isEmpty()) {
+	    	   erroAut.setText("Campos vazios!");
+	       }else {
+	    	   if(cadLogin.getText().isEmpty()) {
+	    		   erroAut.setText("Login Vazio!");
+	    	   }
+	    	   if(cadSenha.getText().isEmpty()) {
+	    		   erroAut.setText("Campo senha vazio!");
+	    	   }
+	    	   if(cadLogin.getText().isEmpty() != true && cadSenha.getText().isEmpty() != true) {
+	    		   
+	    		   try {
+	    			   usuBO.inserir(vo);
+	    				Telas.telaLogin();
+	    			} catch (Exception e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+	    	   }
+	    	   
+	       }
 	}
-   }
+	       
  //-----------------------------------------------------------
    
    //--------------TRATAMENTO DE CLIENTE------------------------

@@ -7,6 +7,5 @@
 	</classpathentry>
 	<classpathentry kind="src" path="Principal/src"/>
 	<classpathentry kind="lib" path="mariadb-java-client-2.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/app/SceneBuilderApp.jar"/>
 	<classpathentry kind="output" path="Principal/src"/>
 </classpath>
