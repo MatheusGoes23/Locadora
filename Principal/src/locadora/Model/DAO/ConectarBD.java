@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public abstract class ConectarBD<VO> implements ConectarBDinterDAO<VO> {
 	private static Connection connection = null;
 	private static final String url = "jdbc:mariadb://localhost:3303/locadora";
-	private static final String user = "valdirjunior";
-	private static final String senha = "123456";
+	private static final String user = "Giovanni";
+	private static final String senha = "Giggio51";
 
 	public Connection getConnection() {
 		if (connection == null) {

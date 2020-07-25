@@ -10,4 +10,5 @@ public interface UsuarioInterBO<VO extends UsuarioVO> extends ConectarBDinterBO<
 	public void alterar(VO vo) throws InsertException;
 
 	public UsuarioVO autenticar(VO vo) throws AutenticationException;
+	public UsuarioVO buscarUsuario(String login) throws AutenticationException;
 }
