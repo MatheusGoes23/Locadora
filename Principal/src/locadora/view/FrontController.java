@@ -232,7 +232,6 @@ public class FrontController implements Initializable{
 		UsuarioVO vo = new UsuarioVO();
 		vo.setLogin(login.getText());
 		vo.setSenha(senha.getText());
-		vo.setPerfil(2);
 		
 		
 			try {
@@ -254,6 +253,7 @@ public class FrontController implements Initializable{
 	   UsuarioVO vo = new UsuarioVO();
 	   vo.setLogin(cadLogin.getText());
 	   vo.setSenha(cadSenha.getText());
+       vo.setPerfil(2);
 	   
 	   usuBO.inserir(vo);
 	   
