@@ -233,15 +233,13 @@ public class FrontController implements Initializable{
 		vo.setLogin(login.getText());
 		vo.setSenha(senha.getText());
 		
-		
 			try {
 				erroAut.setVisible(false);
 				usuBO.autenticar(vo);
 				Telas.telaInicial();
-					
-			
+						
 			} catch (AutenticationException e) {
-				erroAut.setText("Algum campo está vazio");
+				erroAut.setText("Login e/ou senha inválidos");
 				erroAut.setVisible(true);
 			}
 		
@@ -340,6 +338,12 @@ public void iniciarTabelaCliente() throws InsertException {
 	   vinilQuantidade.setText("");
 	   vinilValor.setText("");
 	   
+	   try {
+		Telas.inicialVinil();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
    }
    
    public void iniciarTabelaVinil() throws Exception {
@@ -367,29 +371,51 @@ public void iniciarTabelaCliente() throws InsertException {
 	   vo.setQtdExemplares(Integer.parseInt(txtQuant.getText()));
 	   vo.setValorDoAlulguel(Double.parseDouble(txtValor.getText()));
 	   
-	   
-	   
 		  if(Integer.parseInt(txtQuant.getText()) != discoSelecionado.getQtdExemplares()){
 			  discoBO.alterarQuantidade(vo);
 		  }
 		  if(txtValor.getText() != String.valueOf(discoSelecionado.getValorDoAluguel())) {
 			  discoBO.alterarValor(vo);
 		  }
-		
+		  try {
+			iniciarTabelaVinil();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    }  
    //---------------------------------------------------------------------
    
    //------------------DELEÇÕES----------------------------------
    public void deletaLivro(ActionEvent event) throws InsertException {
 	   livroBO.remover(livroSelecionado);
+		  try {
+			iniciarTabelaLivro();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    }
    
    public void deletaVinil(ActionEvent event) throws InsertException {
 	   discoBO.remover(discoSelecionado);
+		  try {
+			iniciarTabelaVinil();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    }
    
    public void deletaCliente(ActionEvent event) throws InsertException {
 	   cliBO.remover(clienteSelecionado);
+		  try {
+			iniciarTabelaCliente();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   
    }
    //--------------------------------------------------------------
    
@@ -468,7 +494,7 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
    }
   
-   public void inserirLivro(){
+   public void inserirLivro() throws Exception{
 	   LivroVO vo = new LivroVO();
 	   
 	   vo.setAutor(livroAutor.getText());
@@ -481,6 +507,7 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   try {
 		livroBO.inserir(vo);
+		Telas.telaInicial();
 	} catch (InsertException e) {}
 	   
 	   
@@ -493,15 +520,18 @@ public void iniciarTabelaCliente() throws InsertException {
 	   vo.setQtdExemplares(Integer.parseInt(txtQuant.getText()));
 	   vo.setValorDoAlulguel(Double.parseDouble(txtValor.getText()));
 	   
-	   
-	   
 		  if(Integer.parseInt(txtQuant.getText()) != livroSelecionado.getQtdExemplares()){
 			  	livroBO.alterarQuantidade(vo);
 		  }
 		  if(txtValor.getText() != String.valueOf(livroSelecionado.getValorDoAluguel())) {
 			  livroBO.alterarValor(vo);
 		  }
-		
+		  try {
+			iniciarTabelaLivro();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    }  
    
  //-------------------------------------------------------------------------
