@@ -22,7 +22,7 @@ public class Telas extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		setPrimaryStage(primaryStage);
-		primaryStage.setTitle("Login");
+		primaryStage.setTitle("Locadora 1.0");
 		primaryStage.show();
 		telaLogin();
 	
@@ -35,6 +35,7 @@ public class Telas extends Application {
 		Scene cena = new Scene(root);
 		
 		primaryStage.setScene(cena);
+		primaryStage.setTitle("Locadora 1.0");
 	}
 	
 	public static void telaInicial() throws Exception {
