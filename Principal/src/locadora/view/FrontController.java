@@ -333,7 +333,7 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
 	   discoBO.inserir(vo);
 	   
-	   vinilTitulo.setText("aaaa");
+	   vinilTitulo.setText("");
 	   vinilBanda.setText("");
 	   vinilEstilo.setText("");
 	   vinilData.setText("");
@@ -468,7 +468,7 @@ public void iniciarTabelaCliente() throws InsertException {
 	   
    }
   
-   public void inserirLivro() throws InsertException{
+   public void inserirLivro(){
 	   LivroVO vo = new LivroVO();
 	   
 	   vo.setAutor(livroAutor.getText());
@@ -479,7 +479,9 @@ public void iniciarTabelaCliente() throws InsertException {
 	   vo.setQtdPaginas(Integer.parseInt(livroPaginas.getText()));
 	   vo.setValorDoAlulguel(Double.parseDouble(livroValor.getText()));
 	   
-	   livroBO.inserir(vo);
+	   try {
+		livroBO.inserir(vo);
+	} catch (InsertException e) {}
 	   
 	   
 	   
